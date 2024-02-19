@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moodsic/auth/login.dart';
+import 'package:moodsic/auth/signin.dart';
 import 'package:moodsic/constants/routes.dart';
 import 'package:moodsic/tabbar_view/changetunes_view.dart';
 import 'package:moodsic/tabbar_view/nature_sound_view.dart';
@@ -16,9 +18,11 @@ void main() {
       routes: {
         mainRoute: (context) => const HomePage(),
         tunesRoutes: (context) => const tunesView(),
-        changeTuneRoute: (context) => const changeTunes(),
+        changeTuneRoute: (context) => const change_tunes(),
         natureRoute: (context) => const natureSoundView(),
         profileRoute: (context) => const profileView(),
+        signupRoute: (context) => SignupView(),
+        loginRoute: (context) => LoginView(),
       },
     ),
   );
@@ -75,9 +79,9 @@ class HomePage extends StatelessWidget {
               child: TabBarView(
                 children: [
                   tunesView(),
-                  changeTunes(),
+                  change_tunes(),
                   natureSoundView(),
-                  profileView()
+                  profileView(),
                 ],
               ),
             ),

@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class AppTheme {
-  static ThemeData selectTheme(int mood) {
-    switch (mood) {
-      case 1:
-    }
-  }
-
   static ThemeData studyTheme() {
     return ThemeData(
       brightness: Brightness.light,

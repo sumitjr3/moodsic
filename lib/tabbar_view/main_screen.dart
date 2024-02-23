@@ -15,15 +15,15 @@ class MainScreen extends StatelessWidget {
 
     Color? tabbarcolor;
     if (themeProvider.selectedTheme == AppTheme.studyTheme()) {
-      tabbarcolor = AppTheme.studyTheme().colorScheme.primary;
+      tabbarcolor = AppTheme.studyTheme().colorScheme.secondary;
     } else if (themeProvider.selectedTheme == AppTheme.taskTheme()) {
-      tabbarcolor = AppTheme.taskTheme().colorScheme.primary;
+      tabbarcolor = AppTheme.taskTheme().colorScheme.secondary;
     } else if (themeProvider.selectedTheme == AppTheme.readTheme()) {
-      tabbarcolor = AppTheme.readTheme().colorScheme.primary;
+      tabbarcolor = AppTheme.readTheme().colorScheme.secondary;
     } else if (themeProvider.selectedTheme == AppTheme.chillTheme()) {
-      tabbarcolor = AppTheme.chillTheme().colorScheme.primary;
+      tabbarcolor = AppTheme.chillTheme().colorScheme.secondary;
     } else {
-      tabbarcolor = AppTheme.focusTheme().colorScheme.primary;
+      tabbarcolor = AppTheme.focusTheme().colorScheme.secondary;
     }
 
     return DefaultTabController(

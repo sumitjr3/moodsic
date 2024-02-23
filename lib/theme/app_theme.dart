@@ -5,6 +5,7 @@ class AppTheme {
   static ThemeData studyTheme() {
     return ThemeData(
       brightness: Brightness.light,
+      primaryColor: HexColor("#9AF8FD"),
       colorScheme: ColorScheme.fromSeed(
         seedColor: HexColor("#9AF8FD"), // Primary color
         brightness: Brightness.light,
@@ -31,6 +32,7 @@ class AppTheme {
   static ThemeData taskTheme() {
     return ThemeData(
       brightness: Brightness.light,
+      primaryColor: HexColor("#FFDF4F"),
       colorScheme: ColorScheme.fromSeed(
         seedColor: HexColor("#FFDF4F"), // Primary color
         brightness: Brightness.light,
@@ -57,6 +59,7 @@ class AppTheme {
   static ThemeData readTheme() {
     return ThemeData(
       brightness: Brightness.light,
+      primaryColor: HexColor("#FFCFE5"),
       colorScheme: ColorScheme.fromSeed(
         seedColor: HexColor("#FFCFE5"), // Primary color
         brightness: Brightness.light,
@@ -83,6 +86,7 @@ class AppTheme {
   static ThemeData chillTheme() {
     return ThemeData(
       brightness: Brightness.light,
+      primaryColor: HexColor("#FFB7FF"),
       colorScheme: ColorScheme.fromSeed(
         seedColor: HexColor("#FFB7FF"), // Primary color
         brightness: Brightness.light,
@@ -109,6 +113,7 @@ class AppTheme {
   static ThemeData focusTheme() {
     return ThemeData(
       brightness: Brightness.light,
+      primaryColor: HexColor("#BCC4CC"),
       colorScheme: ColorScheme.fromSeed(
         seedColor: HexColor("#BCC4CC"), // Primary color
         brightness: Brightness.light,

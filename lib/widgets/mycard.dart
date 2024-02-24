@@ -22,9 +22,6 @@ class myCard extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                ),
                 child: Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(5),
@@ -36,7 +33,7 @@ class myCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 8,
+                height: 5,
               ),
               Text(
                 text,

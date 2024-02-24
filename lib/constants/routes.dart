@@ -5,3 +5,4 @@ const mainScreenRoute = '/change tune/';
 const tunesRoutes = '/tunes view/';
 const signupRoute = '/sign up/';
 const loginRoute = '/login/';
+const detailedMusicPlayerRoute = '/detailed/';

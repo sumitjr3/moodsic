@@ -25,7 +25,7 @@ void main() {
           mainRoute: (context) => const HomePage(),
           tunesRoutes: (context) => const tunesView(),
           mainScreenRoute: (context) => const MainScreen(),
-          natureRoute: (context) => const natureSoundView(),
+          natureRoute: (context) => natureSoundView(),
           profileRoute: (context) => const profileView(),
           signupRoute: (context) => SignupView(),
           loginRoute: (context) => LoginView(),

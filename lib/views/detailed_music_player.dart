@@ -47,6 +47,12 @@ class DetailedMusicPlayer extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+              Text(
+                text,
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
+              ),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +80,7 @@ class DetailedMusicPlayer extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: const Icon(Icons.arrow_right_alt_rounded),
+                      icon: const Icon(Icons.arrow_right_rounded),
                       iconSize: 50,
                     ),
                     const SizedBox(

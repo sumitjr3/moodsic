@@ -21,15 +21,13 @@ class myCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
           child: Column(
             children: [
-              Container(
-                child: Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Image.asset(
-                      imagePath,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.cover,
+                  height: 150,
+                  width: 150,
                 ),
               ),
               const SizedBox(

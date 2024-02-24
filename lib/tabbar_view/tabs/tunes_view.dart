@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moodsic/theme/app_theme.dart';
 import 'package:moodsic/theme/theme_provider.dart';
+import 'package:moodsic/widgets/mycard.dart';
 import 'package:provider/provider.dart';
 
 class tunesView extends StatelessWidget {
@@ -13,7 +14,16 @@ class tunesView extends StatelessWidget {
 
     String selectedThemeText;
     Color backgroundColor;
-
+    List<String> title = [
+      'Sparrow',
+      'Elephant',
+      'Humming Bird',
+      'Lion',
+      'Sparrow',
+      'Elephant',
+      'Humming Bird',
+      'Lion',
+    ];
     // Compare the selected theme with each theme individually
     if (themeProvider.selectedTheme == AppTheme.studyTheme()) {
       selectedThemeText = 'Study Theme';
@@ -33,8 +43,19 @@ class tunesView extends StatelessWidget {
     }
     return Scaffold(
       backgroundColor: backgroundColor,
-      body: Center(
-        child: Text(selectedThemeText),
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
+        itemCount: 8,
+        itemBuilder: (context, index) {
+          return myCard(
+              color: Colors.black,
+              text: title[index],
+              imagePath: 'lib/assets/images/random.png');
+        },
       ),
     );
   }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:moodsic/theme/theme_provider.dart';
 import 'package:moodsic/views/detailed_music_player.dart';
 import 'package:moodsic/widgets/mycard.dart';
 
 class natureSoundView extends StatelessWidget {
   natureSoundView({super.key});
 
-  List<String> natureTracks = [
+  final List<String> natureTracks = [
     'Rain',
     'Waterfall',
     'Ocean',
@@ -18,7 +19,9 @@ class natureSoundView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = ThemeProvider.of(context);
     return Scaffold(
+      backgroundColor: themeProvider.currentTheme.colorScheme.primary,
       body: Column(
         children: [
           const SizedBox(
@@ -57,7 +60,8 @@ class natureSoundView extends StatelessWidget {
                     );
                   },
                   child: myCard(
-                    color: Colors.black,
+                    color: themeProvider.currentTheme.colorScheme.secondary,
+                    textColor: themeProvider.currentTheme.colorScheme.primary,
                     text: natureTracks[index],
                     imagePath: 'lib/assets/images/random.png',
                   ),

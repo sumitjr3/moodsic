@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class myCard extends StatelessWidget {
   final Color color;
+  final Color textColor;
   final String text;
   final String imagePath;
   const myCard({
     super.key,
     required this.color,
+    required this.textColor,
     required this.text,
     required this.imagePath,
   });
@@ -35,8 +37,8 @@ class myCard extends StatelessWidget {
               ),
               Text(
                 text,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: textColor,
                   fontSize: 20,
                 ),
               ),

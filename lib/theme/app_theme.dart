@@ -2,138 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class AppTheme {
-  static ThemeData studyTheme() {
-    return ThemeData(
-      brightness: Brightness.light,
-      primaryColor: HexColor("#9AF8FD"),
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: HexColor("#9AF8FD"), // Primary color
-        brightness: Brightness.light,
-      ).copyWith(
-        secondary: HexColor("#02D6E1"), // Secondary color
-      ),
-      textTheme: const TextTheme(
-        headlineLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        bodyText1: TextStyle(fontSize: 16),
-      ),
-      visualDensity:
-          VisualDensity.defaultDensityForPlatform(TargetPlatform.android),
-      appBarTheme: AppBarTheme(
-        color: HexColor("#9AF8FD"), // Primary color for app bar
-        titleTextStyle: const TextStyle(color: Colors.white),
-      ),
-      buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        textTheme: ButtonTextTheme.primary,
-      ),
-    );
-  }
-
-  static ThemeData taskTheme() {
-    return ThemeData(
-      brightness: Brightness.light,
-      primaryColor: HexColor("#FFDF4F"),
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: HexColor("#FFDF4F"), // Primary color
-        brightness: Brightness.light,
-      ).copyWith(
-        secondary: HexColor("#FFB44A"), // Secondary color
-      ),
-      textTheme: const TextTheme(
-        headlineLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        bodyText1: TextStyle(fontSize: 16),
-      ),
-      visualDensity:
-          VisualDensity.defaultDensityForPlatform(TargetPlatform.android),
-      appBarTheme: AppBarTheme(
-        color: HexColor("#FFDF4F"), // Primary color for app bar
-        titleTextStyle: const TextStyle(color: Colors.white),
-      ),
-      buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        textTheme: ButtonTextTheme.primary,
-      ),
-    );
-  }
-
-  static ThemeData readTheme() {
-    return ThemeData(
-      brightness: Brightness.light,
-      primaryColor: HexColor("#FFCFE5"),
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: HexColor("#FFCFE5"), // Primary color
-        brightness: Brightness.light,
-      ).copyWith(
-        secondary: HexColor("#FF6697"), // Secondary color
-      ),
-      textTheme: const TextTheme(
-        headlineLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        bodyText1: TextStyle(fontSize: 16),
-      ),
-      visualDensity:
-          VisualDensity.defaultDensityForPlatform(TargetPlatform.android),
-      appBarTheme: AppBarTheme(
-        color: HexColor("#FFCFE5"), // Primary color for app bar
-        titleTextStyle: const TextStyle(color: Colors.white),
-      ),
-      buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        textTheme: ButtonTextTheme.primary,
-      ),
-    );
-  }
-
-  static ThemeData chillTheme() {
-    return ThemeData(
-      brightness: Brightness.light,
-      primaryColor: HexColor("#FFB7FF"),
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: HexColor("#FFB7FF"), // Primary color
-        brightness: Brightness.light,
-      ).copyWith(
-        secondary: HexColor("#E15DFF"), // Secondary color
-      ),
-      textTheme: const TextTheme(
-        headlineLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        bodyText1: TextStyle(fontSize: 16),
-      ),
-      visualDensity:
-          VisualDensity.defaultDensityForPlatform(TargetPlatform.android),
-      appBarTheme: AppBarTheme(
-        color: HexColor("#FFB7FF"), // Primary color for app bar
-        titleTextStyle: const TextStyle(color: Colors.white),
-      ),
-      buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        textTheme: ButtonTextTheme.primary,
-      ),
-    );
-  }
-
-  static ThemeData focusTheme() {
-    return ThemeData(
-      brightness: Brightness.light,
-      primaryColor: HexColor("#BCC4CC"),
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: HexColor("#BCC4CC"), // Primary color
-        brightness: Brightness.light,
-      ).copyWith(
-        secondary: HexColor("#5F676F"), // Secondary color
-      ),
-      textTheme: const TextTheme(
-        headlineLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        bodyText1: TextStyle(fontSize: 16),
-      ),
-      visualDensity:
-          VisualDensity.defaultDensityForPlatform(TargetPlatform.android),
-      appBarTheme: AppBarTheme(
-        color: HexColor("#BCC4CC"), // Primary color for app bar
-        titleTextStyle: const TextStyle(color: Colors.white),
-      ),
-      buttonTheme: ButtonThemeData(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        textTheme: ButtonTextTheme.primary,
-      ),
-    );
-  }
+  ThemeData studyTheme = ThemeData(
+    colorScheme: ColorScheme.light(
+      background: HexColor('#E5FEFF'),
+      primary: HexColor("#11c3c9"),
+      secondary: HexColor("#0D889B"),
+    ),
+  );
+  ThemeData taskTheme = ThemeData(
+    colorScheme: ColorScheme.light(
+      background: HexColor('#17014C'),
+      primary: HexColor("#03017e"),
+      secondary: HexColor("#E6E5FF"),
+    ),
+  );
+  ThemeData readTheme = ThemeData(
+    colorScheme: ColorScheme.light(
+      background: HexColor('#FFE5F0'),
+      primary: HexColor("#ff85b6"),
+      secondary: HexColor("#FF5283"),
+    ),
+  );
+  ThemeData chillTheme = ThemeData(
+    colorScheme: ColorScheme.light(
+      background: HexColor('#FAE5FF'),
+      primary: HexColor("#b00cd8"),
+      secondary: HexColor("#8509AE"),
+    ),
+  );
+  ThemeData focusTheme = ThemeData(
+    colorScheme: ColorScheme.light(
+      background: HexColor('#42444C'),
+      primary: HexColor("#5a6067"),
+      secondary: HexColor("#F2F2F3"),
+    ),
+  );
 }

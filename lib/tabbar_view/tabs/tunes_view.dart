@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moodsic/theme/app_theme.dart';
 import 'package:moodsic/theme/theme_provider.dart';
 import 'package:moodsic/views/detailed_music_player.dart';
 import 'package:moodsic/widgets/mycard.dart';
-import 'package:provider/provider.dart';
 
 class tunesView extends StatelessWidget {
   const tunesView({super.key});
@@ -11,10 +9,8 @@ class tunesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Access the selected theme from the provider
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    final themeProvider = ThemeProvider.of(context);
 
-    final String selectedTheme;
-    Color backgroundColor;
     List<String> titleName = [
       'Sparrow',
       'Elephant',
@@ -25,25 +21,25 @@ class tunesView extends StatelessWidget {
       'Humming Bird',
       'Lion',
     ];
-    // Compare the selected theme with each theme individually
-    if (themeProvider.selectedTheme == AppTheme.studyTheme()) {
-      backgroundColor = AppTheme.studyTheme().primaryColor;
-      selectedTheme = 'Study Activity';
-    } else if (themeProvider.selectedTheme == AppTheme.taskTheme()) {
-      backgroundColor = AppTheme.taskTheme().primaryColor;
-      selectedTheme = 'Task Activity';
-    } else if (themeProvider.selectedTheme == AppTheme.readTheme()) {
-      backgroundColor = AppTheme.readTheme().primaryColor;
-      selectedTheme = 'Read Activity';
-    } else if (themeProvider.selectedTheme == AppTheme.chillTheme()) {
-      backgroundColor = AppTheme.chillTheme().primaryColor;
-      selectedTheme = 'Chill Activity';
-    } else {
-      backgroundColor = AppTheme.focusTheme().primaryColor;
-      selectedTheme = 'Focus Activity';
-    }
+    // // Compare the selected theme with each theme individually
+    // if (themeProvider.selectedTheme == AppTheme.studyTheme()) {
+    //   backgroundColor = AppTheme.studyTheme().primaryColor;
+    //   selectedTheme = 'Study Activity';
+    // } else if (themeProvider.selectedTheme == AppTheme.taskTheme()) {
+    //   backgroundColor = AppTheme.taskTheme().primaryColor;
+    //   selectedTheme = 'Task Activity';
+    // } else if (themeProvider.selectedTheme == AppTheme.readTheme()) {
+    //   backgroundColor = AppTheme.readTheme().primaryColor;
+    //   selectedTheme = 'Read Activity';
+    // } else if (themeProvider.selectedTheme == AppTheme.chillTheme()) {
+    //   backgroundColor = AppTheme.chillTheme().primaryColor;
+    //   selectedTheme = 'Chill Activity';
+    // } else {
+    //   backgroundColor = AppTheme.focusTheme().primaryColor;
+    //   selectedTheme = 'Focus Activity';
+    // }
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: themeProvider.currentTheme.colorScheme.primary,
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -58,7 +54,7 @@ class tunesView extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => DetailedMusicPlayer(
-                      title: selectedTheme,
+                      title: themeProvider.currentThemeName,
                       imagepath: 'lib/assets/images/random.png',
                       text: titleName[index],
                       trackpath: 'lib/assets/images/random.png'),
@@ -66,7 +62,8 @@ class tunesView extends StatelessWidget {
               );
             },
             child: myCard(
-                color: Colors.black,
+                color: themeProvider.currentTheme.colorScheme.secondary,
+                textColor: themeProvider.currentTheme.colorScheme.primary,
                 text: titleName[index],
                 imagePath: 'lib/assets/images/random.png'),
           );

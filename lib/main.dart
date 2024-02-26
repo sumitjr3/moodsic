@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moodsic/auth/login.dart';
 import 'package:moodsic/auth/signin.dart';
 import 'package:moodsic/constants/routes.dart';
+import 'package:moodsic/models/playlist_provider.dart';
 import 'package:moodsic/tabbar_view/main_screen.dart';
 import 'package:moodsic/tabbar_view/tabs/nature_sound_view.dart';
 import 'package:moodsic/tabbar_view/tabs/profile.dart';
@@ -13,9 +14,15 @@ import 'package:moodsic/theme/app_theme.dart';
 
 void main() {
   runApp(
-    // Wrap your MaterialApp with ChangeNotifierProvider
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ThemeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PlaylistProvider(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );

@@ -57,14 +57,14 @@ class DetailedMusicPlayer extends StatelessWidget {
                 margin: const EdgeInsets.all(20),
                 elevation: 20,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(20),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(20),
                         child: Image(
                           image: AssetImage(imagepath),
                           alignment: Alignment.center,
@@ -101,7 +101,7 @@ class DetailedMusicPlayer extends StatelessWidget {
                 margin: const EdgeInsets.all(20),
                 elevation: 20,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20),

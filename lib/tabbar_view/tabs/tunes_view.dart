@@ -25,20 +25,15 @@ class _tunesViewState extends State<tunesView> {
     playlistProvider = Provider.of<PlaylistProvider>(context, listen: false);
   }
 
-  void goToSong(int songIdex, String songNameF, String songImagePathF,
-      String songTrackPathF, String currentThemeName) {
+  void goToSong(int currentIndex) {
     //update the song index
-    playlistProvider.currentSongIndex = songIdex;
+    playlistProvider.currentSongIndex = currentIndex;
 
     //navigate to the detailed screen
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => DetailedMusicPlayer(
-            title: currentThemeName,
-            imagepath: songImagePathF,
-            text: songNameF,
-            trackpath: songImagePathF),
+        builder: (context) => DetailedMusicPlayer(),
       ),
     );
   }
@@ -66,14 +61,10 @@ class _tunesViewState extends State<tunesView> {
             itemBuilder: (context, index) {
               //get the individual song
               final Songs song = playlist[index];
-              String songName = song.songName;
-              String songImagePath = song.songImagePath;
-              String songTrackPath = song.songTrackPath;
-              String themeName = themeProvider.currentThemeName;
+
               return GestureDetector(
                 onTap: () {
-                  goToSong(
-                      index, songName, songImagePath, songTrackPath, themeName);
+                  goToSong(index);
                 },
                 child: myCard(
                     color: themeProvider.currentTheme.colorScheme.secondary,

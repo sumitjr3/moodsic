@@ -51,11 +51,7 @@ class natureSoundView extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetailedMusicPlayer(
-                            title: natureTracks[index],
-                            imagepath: 'lib/assets/images/random.png',
-                            text: natureTracks[index],
-                            trackpath: 'lib/assets/images/random.png'),
+                        builder: (context) => DetailedMusicPlayer(),
                       ),
                     );
                   },

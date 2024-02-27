@@ -93,10 +93,12 @@ class DetailedMusicPlayer extends StatelessWidget {
                     ),
                     child: Slider(
                       min: 0,
-                      max: 100,
-                      value: 50,
+                      max: value.totalDuration.inSeconds.toDouble(),
+                      value: value.currentDuration.inSeconds.toDouble(),
                       activeColor: Colors.green,
-                      onChanged: (value) {},
+                      onChanged: (double double) {
+                        value.seek(Duration(seconds: double.toInt()));
+                      },
                     ),
                   ),
                   Card(
@@ -113,9 +115,7 @@ class DetailedMusicPlayer extends StatelessWidget {
                         children: [
                           Expanded(
                             child: GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
+                              onTap: value.playPreviousSong,
                               child: const Icon(
                                 Icons.skip_previous,
                                 size: 25,
@@ -126,11 +126,11 @@ class DetailedMusicPlayer extends StatelessWidget {
                           Expanded(
                             flex: 2,
                             child: GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Icon(
-                                Icons.play_arrow,
+                              onTap: value.pauseOrResume,
+                              child: Icon(
+                                value.isPlaying
+                                    ? Icons.pause
+                                    : Icons.play_arrow,
                                 size: 25,
                               ),
                             ),
@@ -138,9 +138,7 @@ class DetailedMusicPlayer extends StatelessWidget {
                           const SizedBox(width: 20),
                           Expanded(
                             child: GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
+                              onTap: value.playNextSong,
                               child: const Icon(
                                 Icons.skip_next,
                                 size: 25,

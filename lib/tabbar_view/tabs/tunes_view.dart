@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moodsic/constants/routes.dart';
-import 'package:moodsic/models/playlist_provider.dart';
-import 'package:moodsic/models/songs.dart';
-import 'package:moodsic/theme/app_theme.dart';
+import 'package:moodsic/controllers/playlist_provider.dart';
+import 'package:moodsic/controllers/songs.dart';
 import 'package:moodsic/theme/theme_provider.dart';
 import 'package:moodsic/views/detailed_music_player.dart';
 import 'package:moodsic/widgets/mycard.dart';
@@ -33,7 +31,7 @@ class _tunesViewState extends State<tunesView> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => DetailedMusicPlayer(),
+        builder: (context) => const DetailedMusicPlayer(),
       ),
     );
   }
@@ -51,29 +49,32 @@ class _tunesViewState extends State<tunesView> {
           final List<Songs> playlist = value.playList;
 
           //return liour cardview
-          return GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
-            itemCount: playlist.length,
-            itemBuilder: (context, index) {
-              //get the individual song
-              final Songs song = playlist[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+              ),
+              itemCount: playlist.length,
+              itemBuilder: (context, index) {
+                //get the individual song
+                final Songs song = playlist[index];
 
-              return GestureDetector(
-                onTap: () {
-                  goToSong(index);
-                },
-                child: myCard(
-                    color: themeProvider.currentTheme.colorScheme.secondary,
-                    textColor: themeProvider.currentTheme.colorScheme.primary,
-                    text: song.songName,
-                    imagePath: song.songImagePath),
-              );
-            },
-            padding: const EdgeInsets.all(10),
+                return GestureDetector(
+                  onTap: () {
+                    goToSong(index);
+                  },
+                  child: myCard(
+                      color: themeProvider.currentTheme.colorScheme.secondary,
+                      textColor: themeProvider.currentTheme.colorScheme.primary,
+                      text: song.songName,
+                      imagePath: song.songImagePath),
+                );
+              },
+              padding: const EdgeInsets.all(10),
+            ),
           );
         },
       ),

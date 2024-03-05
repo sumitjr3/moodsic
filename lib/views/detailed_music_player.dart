@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:moodsic/models/playlist_provider.dart';
+import 'package:moodsic/controllers/playlist_provider.dart';
 import 'package:moodsic/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-class DetailedMusicPlayer extends StatelessWidget {
+class DetailedMusicPlayer extends StatefulWidget {
   const DetailedMusicPlayer({
     super.key,
   });
 
+  @override
+  State<DetailedMusicPlayer> createState() => _DetailedMusicPlayerState();
+}
+
+class _DetailedMusicPlayerState extends State<DetailedMusicPlayer> {
   @override
   Widget build(BuildContext context) {
     return Consumer<PlaylistProvider>(
@@ -56,7 +61,8 @@ class DetailedMusicPlayer extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Card(
-                    shadowColor: Colors.deepPurple[400],
+                    shadowColor:
+                        themeprovider.currentTheme.colorScheme.background,
                     margin: const EdgeInsets.all(20),
                     elevation: 20,
                     shape: RoundedRectangleBorder(
@@ -102,7 +108,8 @@ class DetailedMusicPlayer extends StatelessWidget {
                     ),
                   ),
                   Card(
-                    shadowColor: Colors.deepPurple[400],
+                    shadowColor:
+                        themeprovider.currentTheme.colorScheme.background,
                     margin: const EdgeInsets.all(20),
                     elevation: 20,
                     shape: RoundedRectangleBorder(

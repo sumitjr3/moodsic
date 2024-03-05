@@ -15,35 +15,33 @@ class myCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      color: color,
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-          child: Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.cover,
-                  height: 150,
-                  width: 150,
-                ),
+    return Container(
+      height: 200,
+      width: 150,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: color,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                text,
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: 20,
-                ),
-              ),
-            ],
-          ),
+            ),
+            // const SizedBox(height: 5),
+            // Text(
+            //   text,
+            //   style: TextStyle(
+            //     color: textColor,
+            //     fontSize: 20,
+            //   ),
+            // )
+          ],
         ),
       ),
     );

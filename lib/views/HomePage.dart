@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:moodsic/tabbar_view/main_screen.dart';
-import 'package:moodsic/theme/app_theme.dart';
 import 'package:moodsic/theme/theme_provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,24 +41,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  // //method to get the current mood
-  // ThemeData getThemeByMood() {
-  //   switch (selected) {
-  //     case 1:
-  //       return AppTheme().studyTheme;
-  //     case 2:
-  //       return AppTheme().taskTheme;
-  //     case 3:
-  //       return AppTheme().readTheme;
-  //     case 4:
-  //       return AppTheme().chillTheme;
-  //     case 5:
-  //       return AppTheme().focusTheme;
-  //     default:
-  //       return AppTheme().studyTheme;
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +92,8 @@ class _HomePageState extends State<HomePage> {
                 ));
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.background,
+                backgroundColor:
+                    themeProvider.currentTheme.colorScheme.secondary,
                 fixedSize: const Size(200, 100),
                 elevation: 10,
                 shape: RoundedRectangleBorder(

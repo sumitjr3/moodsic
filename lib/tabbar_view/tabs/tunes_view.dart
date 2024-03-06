@@ -30,8 +30,11 @@ class _tunesViewState extends State<tunesView> {
     //navigate to the detailed screen
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => const DetailedMusicPlayer(),
+      PageRouteBuilder(
+        transitionDuration: const Duration(seconds: 5),
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const DetailedMusicPlayer(),
+        // builder: (context) => const DetailedMusicPlayer(),
       ),
     );
   }
@@ -50,27 +53,32 @@ class _tunesViewState extends State<tunesView> {
 
           //return liour cardview
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
+                crossAxisCount: 2,
+                crossAxisSpacing: 15,
+                mainAxisSpacing: 15,
+                childAspectRatio: 1 / 1.25,
               ),
               itemCount: playlist.length,
               itemBuilder: (context, index) {
                 //get the individual song
                 final Songs song = playlist[index];
 
-                return GestureDetector(
+                return InkWell(
                   onTap: () {
                     goToSong(index);
                   },
-                  child: myCard(
-                      color: themeProvider.currentTheme.colorScheme.secondary,
-                      textColor: themeProvider.currentTheme.colorScheme.primary,
-                      text: song.songName,
-                      imagePath: song.songImagePath),
+                  child: Hero(
+                    tag: 'animation',
+                    child: myCard(
+                        color: themeProvider.currentTheme.colorScheme.secondary,
+                        textColor:
+                            themeProvider.currentTheme.colorScheme.primary,
+                        text: song.songName,
+                        imagePath: song.songImagePath),
+                  ),
                 );
               },
               padding: const EdgeInsets.all(10),

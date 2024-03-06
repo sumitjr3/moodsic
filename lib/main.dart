@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:moodsic/auth/login.dart';
-import 'package:moodsic/auth/signin.dart';
 import 'package:moodsic/constants/routes.dart';
 import 'package:moodsic/controllers/playlist_provider.dart';
 import 'package:moodsic/tabbar_view/main_screen.dart';
@@ -44,8 +42,6 @@ class MyApp extends StatelessWidget {
         mainScreenRoute: (context) => const MainScreen(),
         natureRoute: (context) => natureSoundView(),
         profileRoute: (context) => profileView(),
-        signupRoute: (context) => SignupView(),
-        loginRoute: (context) => LoginView(),
       },
     );
   }

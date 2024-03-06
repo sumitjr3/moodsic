@@ -16,8 +16,6 @@ class myCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      width: 150,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: color,
@@ -33,14 +31,14 @@ class myCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            // const SizedBox(height: 5),
-            // Text(
-            //   text,
-            //   style: TextStyle(
-            //     color: textColor,
-            //     fontSize: 20,
-            //   ),
-            // )
+            const SizedBox(height: 5),
+            Text(
+              text,
+              style: TextStyle(
+                color: textColor,
+                fontSize: 20,
+              ),
+            )
           ],
         ),
       ),

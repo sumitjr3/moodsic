@@ -26,137 +26,164 @@ class _DetailedMusicPlayerState extends State<DetailedMusicPlayer> {
         return Scaffold(
           body: SafeArea(
             child: Center(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(
-                          Icons.arrow_back,
-                          size: 25,
-                        ),
-                      ),
-                      Text(
-                        themeprovider.currentThemeName,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                          letterSpacing: 1,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(
-                          Icons.menu,
-                          size: 30,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Card(
-                    shadowColor:
-                        themeprovider.currentTheme.colorScheme.background,
-                    margin: const EdgeInsets.all(20),
-                    elevation: 20,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
+              child: Hero(
+                tag: 'animation',
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image(
-                              image: AssetImage(currentSong.songImagePath),
-                              alignment: Alignment.center,
-                              fit: BoxFit.fill,
-                            ),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_back,
+                            size: 25,
                           ),
                         ),
-                        const SizedBox(height: 10),
                         Text(
-                          currentSong.songName,
+                          themeprovider.currentThemeName,
                           style: const TextStyle(
-                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                            letterSpacing: 1,
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.menu,
+                            size: 30,
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                  SliderTheme(
-                    data: SliderTheme.of(context).copyWith(
-                      thumbShape:
-                          const RoundSliderThumbShape(enabledThumbRadius: 0),
-                    ),
-                    child: Slider(
-                      min: 0,
-                      max: value.totalDuration.inSeconds.toDouble(),
-                      value: value.currentDuration.inSeconds.toDouble(),
-                      activeColor: Colors.green,
-                      onChanged: (double double) {
-                        value.seek(Duration(seconds: double.toInt()));
-                      },
-                    ),
-                  ),
-                  Card(
-                    shadowColor:
-                        themeprovider.currentTheme.colorScheme.background,
-                    margin: const EdgeInsets.all(20),
-                    elevation: 20,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    const SizedBox(height: 30),
+                    Card(
+                      shadowColor:
+                          themeprovider.currentTheme.colorScheme.background,
+                      margin: const EdgeInsets.all(20),
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
                         children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: value.playPreviousSong,
-                              child: const Icon(
-                                Icons.skip_previous,
-                                size: 25,
+                          //image
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image(
+                                image: AssetImage(currentSong.songImagePath),
+                                alignment: Alignment.center,
+                                fit: BoxFit.fill,
                               ),
                             ),
                           ),
-                          const SizedBox(width: 20),
-                          Expanded(
-                            flex: 2,
-                            child: GestureDetector(
-                              onTap: value.pauseOrResume,
-                              child: Icon(
-                                value.isPlaying
-                                    ? Icons.pause
-                                    : Icons.play_arrow,
-                                size: 25,
-                              ),
+                          const SizedBox(height: 10),
+                          //tune name
+                          Text(
+                            currentSong.songName,
+                            style: const TextStyle(
+                              fontSize: 20,
                             ),
                           ),
-                          const SizedBox(width: 20),
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: value.playNextSong,
-                              child: const Icon(
-                                Icons.skip_next,
-                                size: 25,
-                              ),
-                            ),
+                          const SizedBox(
+                            height: 10,
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        thumbShape:
+                            const RoundSliderThumbShape(enabledThumbRadius: 6),
+                      ),
+                      child: Slider(
+                        min: 0,
+                        max: value.totalDuration.inSeconds.toDouble(),
+                        value: value.currentDuration.inSeconds.toDouble(),
+                        activeColor: Colors.green,
+                        onChanged: (double double) {
+                          value.seek(Duration(seconds: double.toInt()));
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(0),
+                      child: Card(
+                        shadowColor:
+                            themeprovider.currentTheme.colorScheme.background,
+                        margin: const EdgeInsets.all(20),
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            //play, pause, next and previous layout
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: value.playPreviousSong,
+                                      child: const Icon(
+                                        Icons.skip_previous,
+                                        size: 25,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Expanded(
+                                    flex: 2,
+                                    child: GestureDetector(
+                                      onTap: value.pauseOrResume,
+                                      child: Icon(
+                                        value.isPlaying
+                                            ? Icons.pause
+                                            : Icons.play_arrow,
+                                        size: 25,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: value.playNextSong,
+                                      child: const Icon(
+                                        Icons.skip_next,
+                                        size: 25,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

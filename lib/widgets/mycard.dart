@@ -31,7 +31,7 @@ class myCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 10),
             Text(
               text,
               style: TextStyle(

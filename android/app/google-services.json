@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "274614819324",
+    "project_id": "moodsic-97119",
+    "storage_bucket": "moodsic-97119.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274614819324:android:2824bfa30184e34b41fa79",
+        "android_client_info": {
+          "package_name": "com.example.moodsic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu5OrppR17a72auWC09GjE-gBzsEGZ1ak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,3 +6,4 @@ const tunesRoutes = '/tunes view/';
 const signupRoute = '/sign up/';
 const loginRoute = '/login/';
 const detailedMusicPlayerRoute = '/detailed/';
+const homePageRoute = '/home page/';

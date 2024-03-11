@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:moodsic/constants/routes.dart';
 import 'package:moodsic/theme/theme_provider.dart';
+import 'package:moodsic/views/HomePage.dart';
+import 'package:moodsic/widgets/mybutton.dart';
 
 class profileView extends StatefulWidget {
   profileView({super.key});
@@ -58,26 +61,14 @@ class _profileViewState extends State<profileView> {
             SizedBox(
               height: 80,
               width: 300,
-              child: TextButton.icon(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: Icon(
-                  Icons.settings,
-                  color: themeProvider.currentTheme.colorScheme.secondary,
-                  size: 30,
-                ),
-                label: Text(
-                  'SETTING',
-                  style: TextStyle(
-                      color: themeProvider.currentTheme.colorScheme.secondary,
-                      fontSize: 30),
-                ),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      themeProvider.currentTheme.colorScheme.background),
-                ),
-              ),
+              child: MyButton(
+                  onTap: () {
+                    Navigator.of(context).pushAndRemoveUntil(
+                        homePageRoute as Route<Object?>, (route) => false);
+                  },
+                  textColor: Colors.black,
+                  backgroungColor: Colors.white60,
+                  text: 'SETTINGS'),
             ),
             //space betweem
             const SizedBox(height: 30),
@@ -85,26 +76,14 @@ class _profileViewState extends State<profileView> {
             SizedBox(
               height: 80,
               width: 300,
-              child: TextButton.icon(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: Icon(
-                  Icons.login_outlined,
-                  color: themeProvider.currentTheme.colorScheme.secondary,
-                  size: 30,
-                ),
-                label: Text(
-                  'LOGOUT',
-                  style: TextStyle(
-                      color: themeProvider.currentTheme.colorScheme.secondary,
-                      fontSize: 30),
-                ),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      themeProvider.currentTheme.colorScheme.background),
-                ),
-              ),
+              child: MyButton(
+                  onTap: () {
+                    Navigator.of(context).pushAndRemoveUntil(
+                        homePageRoute as Route<Object?>, (route) => false);
+                  },
+                  textColor: Colors.black,
+                  backgroungColor: Colors.white60,
+                  text: 'LOGOUT'),
             ),
           ],
         ),

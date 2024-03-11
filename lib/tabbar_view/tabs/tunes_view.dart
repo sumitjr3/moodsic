@@ -45,7 +45,7 @@ class _tunesViewState extends State<tunesView> {
     final themeProvider = ThemeProvider.of(context);
 
     return Scaffold(
-      backgroundColor: themeProvider.currentTheme.colorScheme.primary,
+      backgroundColor: themeProvider.currentTheme.colorScheme.secondary,
       body: Consumer<PlaylistProvider>(
         builder: (context, value, child) {
           //get the playlist
@@ -73,9 +73,9 @@ class _tunesViewState extends State<tunesView> {
                   child: Hero(
                     tag: 'animation',
                     child: myCard(
-                        color: themeProvider.currentTheme.colorScheme.secondary,
+                        color: themeProvider.currentTheme.colorScheme.primary,
                         textColor:
-                            themeProvider.currentTheme.colorScheme.primary,
+                            themeProvider.currentTheme.colorScheme.secondary,
                         text: song.songName,
                         imagePath: song.songImagePath),
                   ),

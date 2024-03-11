@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:moodsic/auth/firebase_auth_service.dart';
+import 'package:moodsic/auth/login.dart';
+import 'package:moodsic/auth/signin.dart';
 import 'package:moodsic/constants/routes.dart';
 import 'package:moodsic/controllers/playlist_provider.dart';
 import 'package:moodsic/tabbar_view/main_screen.dart';
@@ -10,6 +13,7 @@ import 'package:moodsic/theme/theme_provider.dart';
 import 'package:moodsic/views/HomePage.dart';
 import 'package:provider/provider.dart';
 import 'package:moodsic/theme/app_theme.dart';
+import 'firebase_options.dart';
 
 void main() {
   runApp(
@@ -22,19 +26,37 @@ void main() {
           create: (context) => PlaylistProvider(),
         ),
       ],
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
+  final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _firebaseAuthService.isUserLoggedIn(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else {
+          if (snapshot.data == true) {
+            return _buildApp(context, const HomePage());
+          } else {
+            return _buildApp(context, LoginView());
+          }
+        }
+      },
+    );
+  }
+
+  Widget _buildApp(BuildContext context, Widget home) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: home,
       theme: AppTheme().studyTheme,
       routes: {
         mainRoute: (context) => const HomePage(),
@@ -42,7 +64,27 @@ class MyApp extends StatelessWidget {
         mainScreenRoute: (context) => const MainScreen(),
         natureRoute: (context) => natureSoundView(),
         profileRoute: (context) => profileView(),
+        homePageRoute: (context) => const HomePage(),
+        loginRoute: (context) => LoginView(),
+        signupRoute: (context) => SignupView(),
       },
     );
   }
 }
+
+
+// GetMaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: const HomePage(),
+//       theme: AppTheme().studyTheme,
+//       routes: {
+//         mainRoute: (context) => const HomePage(),
+//         tunesRoutes: (context) => const tunesView(),
+//         mainScreenRoute: (context) => const MainScreen(),
+//         natureRoute: (context) => natureSoundView(),
+//         profileRoute: (context) => profileView(),
+//         homePageRoute: (context) => const HomePage(),
+//         loginRoute: (context) => LoginView(),
+//         signupRoute: (context) => SignupView(),
+//       },
+//     );

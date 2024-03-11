@@ -25,14 +25,14 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(20.0),
         ),
         side: BorderSide(
-          color: (selected == index) ? Colors.green : Colors.blue,
+          color: (selected == index) ? Colors.black87 : Colors.black26,
         ),
         fixedSize: const Size(300, 100),
       ),
       child: Text(
         text,
         style: TextStyle(
-          color: (selected == index) ? Colors.green : Colors.blue,
+          color: (selected == index) ? Colors.black87 : Colors.black26,
           fontSize: 30,
           fontWeight: FontWeight.w400,
           letterSpacing: 3,
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     //current themeProvider instance
     final themeProvider = ThemeProvider.of(context, listen: false);
     return Scaffold(
-      backgroundColor: themeProvider.currentTheme.colorScheme.primary,
+      backgroundColor: Colors.white70,
       body: Center(
         child: Column(
           children: [
@@ -92,8 +92,7 @@ class _HomePageState extends State<HomePage> {
                 ));
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    themeProvider.currentTheme.colorScheme.secondary,
+                backgroundColor: Colors.black,
                 fixedSize: const Size(200, 100),
                 elevation: 10,
                 shape: RoundedRectangleBorder(

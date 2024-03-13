@@ -24,7 +24,7 @@ class _LoginViewState extends State<LoginView> {
     String email = emailController.text;
     String password = passwordController.text;
 
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
+    User? user = await _auth.signInWithEmailAndPassword(email, password); 
 
     if (user != null) {
       print('user is successfully created');

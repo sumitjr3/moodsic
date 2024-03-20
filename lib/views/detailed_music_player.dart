@@ -79,7 +79,7 @@ class _DetailedMusicPlayerState extends State<DetailedMusicPlayer> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: Image(
-                                image: AssetImage(currentSong.songImagePath),
+                                image: NetworkImage(currentSong.songImagePath),
                                 alignment: Alignment.center,
                                 fit: BoxFit.fill,
                               ),

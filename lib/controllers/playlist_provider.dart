@@ -1,46 +1,75 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:moodsic/controllers/songs.dart';
 
 class PlaylistProvider extends ChangeNotifier {
+  //constructor
+  PlaylistProvider() {
+    listenToDuration();
+    fetchPlaylist();
+  }
+
+  //list of songs
   final List<Songs> _playlist = [
-    Songs(
-        songName: 'tune 1',
-        songTrackPath:
-            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-        songImagePath: 'lib/assets/images/img1.png'),
-    Songs(
-        songName: 'tune 2',
-        songTrackPath:
-            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-        songImagePath: 'lib/assets/images/img2.png'),
-    Songs(
-        songName: 'tune 3',
-        songTrackPath:
-            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-        songImagePath: 'lib/assets/images/img3.png'),
-    Songs(
-        songName: 'tune 4',
-        songTrackPath:
-            'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-        songImagePath: 'lib/assets/images/img4.png'),
-    Songs(
-        songName: 'tune 5',
-        songTrackPath: 'lib/assets/tunes/tune1.mp3',
-        songImagePath: 'lib/assets/images/img5.png'),
-    Songs(
-        songName: 'tune 6',
-        songTrackPath: 'lib/assets/tunes/tune1.mp3',
-        songImagePath: 'lib/assets/images/img6.png'),
-    Songs(
-        songName: 'tune 7',
-        songTrackPath: 'lib/assets/tunes/tune1.mp3',
-        songImagePath: 'lib/assets/images/img7.png'),
-    Songs(
-        songName: 'tune 8',
-        songTrackPath: 'lib/assets/tunes/tune1.mp3',
-        songImagePath: 'lib/assets/images/img8.png'),
+    // Songs(
+    //     songName: 'tune 1',
+    //     songTrackPath:
+    //         'https://firebasestorage.googleapis.com/v0/b/moodsic-97119.appspot.com/o/tunes%2FchillTunes%2F1%2Fmp3%2Fdreamscape-soul-relaxing-cinematic-background-music-for-videos-155186.mp3?alt=media&token=9c894e1f-b020-494a-b548-5794fdc391db',
+    //     songImagePath: 'lib/assets/images/img1.png'),
+    // Songs(
+    //     songName: 'tune 2',
+    //     songTrackPath:
+    //         'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    //     songImagePath: 'lib/assets/images/img2.png'),
+    // Songs(
+    //     songName: 'tune 3',
+    //     songTrackPath:
+    //         'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    //     songImagePath: 'lib/assets/images/img3.png'),
+    // Songs(
+    //     songName: 'tune 4',
+    //     songTrackPath:
+    //         'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    //     songImagePath: 'lib/assets/images/img4.png'),
+    // Songs(
+    //     songName: 'tune 5',
+    //     songTrackPath: 'lib/assets/tunes/tune1.mp3',
+    //     songImagePath: 'lib/assets/images/img5.png'),
+    // Songs(
+    //     songName: 'tune 6',
+    //     songTrackPath: 'lib/assets/tunes/tune1.mp3',
+    //     songImagePath: 'lib/assets/images/img6.png'),
+    // Songs(
+    //     songName: 'tune 7',
+    //     songTrackPath: 'lib/assets/tunes/tune1.mp3',
+    //     songImagePath: 'lib/assets/images/img7.png'),
+    // Songs(
+    //     songName: 'tune 8',
+    //     songTrackPath: 'lib/assets/tunes/tune1.mp3',
+    //     songImagePath: 'lib/assets/images/img8.png'),
   ];
+
+  Future<void> fetchPlaylist() async {
+    final DatabaseReference dbRef =
+        FirebaseDatabase.instance.ref().child('playlists').child('study');
+    final DataSnapshot snapshot = await dbRef.get();
+
+    List<dynamic> playlistData = snapshot.value as List<dynamic>;
+
+    _playlist.clear(); // Clear the previous playlist data
+
+    for (var songData in playlistData) {
+      final Songs song = Songs(
+        songName: songData['title'],
+        songImagePath: songData['cover_image'],
+        songTrackPath: songData['mp3_url'],
+      );
+      _playlist.add(song);
+    }
+
+    notifyListeners(); // Trigger a rebuild of the widget to display the updated playlist
+  }
 
   /* Audio Player */
   //audio player
@@ -53,10 +82,6 @@ class PlaylistProvider extends ChangeNotifier {
   Duration _currentDuration = Duration.zero;
   Duration _totalDuration = Duration.zero;
 
-  //constructor
-  PlaylistProvider() {
-    listenToDuration();
-  }
   //initially not playing
   bool _isPlaying = false;
 

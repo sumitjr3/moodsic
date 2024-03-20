@@ -13,7 +13,6 @@ import 'package:moodsic/theme/theme_provider.dart';
 import 'package:moodsic/views/HomePage.dart';
 import 'package:provider/provider.dart';
 import 'package:moodsic/theme/app_theme.dart';
-import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -63,7 +62,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme().studyTheme,
       routes: {
         mainRoute: (context) => const HomePage(),
-        tunesRoutes: (context) => const tunesView(),
+        tunesRoutes: (context) => tunesView(),
         mainScreenRoute: (context) => const MainScreen(),
         natureRoute: (context) => natureSoundView(),
         profileRoute: (context) => profileView(),
@@ -74,20 +73,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-// GetMaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: const HomePage(),
-//       theme: AppTheme().studyTheme,
-//       routes: {
-//         mainRoute: (context) => const HomePage(),
-//         tunesRoutes: (context) => const tunesView(),
-//         mainScreenRoute: (context) => const MainScreen(),
-//         natureRoute: (context) => natureSoundView(),
-//         profileRoute: (context) => profileView(),
-//         homePageRoute: (context) => const HomePage(),
-//         loginRoute: (context) => LoginView(),
-//         signupRoute: (context) => SignupView(),
-//       },
-//     );

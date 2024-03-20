@@ -48,17 +48,17 @@ class ThemeProvider with ChangeNotifier {
   String _getThemeName(AppThemeType themeType) {
     switch (themeType) {
       case AppThemeType.study:
-        return 'Study Theme';
+        return 'study';
       case AppThemeType.task:
-        return 'Task Theme';
+        return 'task';
       case AppThemeType.read:
-        return 'Read Theme';
+        return 'read';
       case AppThemeType.chill:
-        return 'Chill Theme';
+        return 'chill';
       case AppThemeType.focus:
-        return 'Focus Theme';
+        return 'focus';
       default:
-        return 'Study Theme';
+        return 'study';
     }
   }
 

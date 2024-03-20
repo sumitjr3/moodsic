@@ -21,22 +21,22 @@ class myCard extends StatelessWidget {
         color: color,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(15),
         child: Column(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
+              child: Image.network(
                 imagePath,
                 fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 5),
             Text(
               text,
               style: TextStyle(
                 color: textColor,
-                fontSize: 20,
+                fontSize: 15,
               ),
             )
           ],

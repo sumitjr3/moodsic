@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:moodsic/controllers/playlist_provider.dart';
 import 'package:moodsic/controllers/songs.dart';
@@ -7,20 +8,24 @@ import 'package:moodsic/widgets/mycard.dart';
 import 'package:provider/provider.dart';
 
 class tunesView extends StatefulWidget {
-  const tunesView({super.key});
+  tunesView({super.key});
 
   @override
   State<tunesView> createState() => _tunesViewState();
 }
 
 class _tunesViewState extends State<tunesView> {
-  late final dynamic playlistProvider;
+  late PlaylistProvider playlistProvider;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    playlistProvider = Provider.of<PlaylistProvider>(context, listen: false);
+  }
 
   @override
   void initState() {
     super.initState();
-
-    playlistProvider = Provider.of<PlaylistProvider>(context, listen: false);
   }
 
   void goToSong(int currentIndex) {
@@ -31,7 +36,7 @@ class _tunesViewState extends State<tunesView> {
     Navigator.push(
       context,
       PageRouteBuilder(
-        transitionDuration: const Duration(seconds: 5),
+        transitionDuration: const Duration(seconds: 2),
         pageBuilder: (context, animation, secondaryAnimation) =>
             const DetailedMusicPlayer(),
         // builder: (context) => const DetailedMusicPlayer(),

@@ -3,6 +3,7 @@ import 'package:moodsic/constants/routes.dart';
 import 'package:moodsic/theme/theme_provider.dart';
 import 'package:moodsic/views/HomePage.dart';
 import 'package:moodsic/widgets/mybutton.dart';
+import 'package:moodsic/widgets/profile_card.dart';
 
 class profileView extends StatefulWidget {
   profileView({super.key});
@@ -12,79 +13,117 @@ class profileView extends StatefulWidget {
 }
 
 class _profileViewState extends State<profileView> {
+  void logoutMethod() {}
   @override
   Widget build(BuildContext context) {
     final themeProvider = ThemeProvider.of(context);
     return Scaffold(
+      backgroundColor: themeProvider.currentTheme.colorScheme.background,
       body: SafeArea(
         child: Column(
           children: [
-            //size between
-            const SizedBox(height: 30),
-            //avatar vector
-            const Center(
-              child: CircleAvatar(
-                radius: 100,
+            const SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: ClipOval(
+                child: Image.asset(
+                  'lib/assets/images/img1.png',
+                  width: 150,
+                  height: 150,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-            //size between
-            const SizedBox(height: 30),
-            //two icons for time and calendar
-            Center(
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: const Icon(
-                      Icons.watch_later_outlined,
-                      size: 80,
+                  Container(
+                    height: 180,
+                    width: 150,
+                    child: ProfileCard(
+                      color: themeProvider.currentTheme.colorScheme.secondary,
+                      textColor:
+                          themeProvider.currentTheme.colorScheme.background,
+                      iconName: const Icon(Icons.circle),
+                      text: 'hello',
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: const Icon(
-                      Icons.calendar_month_sharp,
-                      size: 80,
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 180,
+                    width: 150,
+                    child: ProfileCard(
+                      color: themeProvider.currentTheme.colorScheme.secondary,
+                      textColor:
+                          themeProvider.currentTheme.colorScheme.background,
+                      iconName: const Icon(Icons.circle),
+                      text: 'hello',
                     ),
                   ),
                 ],
               ),
             ),
-            //space betweem
-            const SizedBox(height: 50),
-            //setting button
-            SizedBox(
-              height: 80,
-              width: 300,
-              child: MyButton(
-                  onTap: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        homePageRoute as Route<Object?>, (route) => false);
-                  },
-                  textColor: Colors.black,
-                  backgroungColor: Colors.white60,
-                  text: 'SETTINGS'),
+            const SizedBox(
+              height: 10,
             ),
-            //space betweem
-            const SizedBox(height: 30),
-            //logout button
-            SizedBox(
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    height: 180,
+                    width: 150,
+                    child: ProfileCard(
+                      color: themeProvider.currentTheme.colorScheme.secondary,
+                      textColor:
+                          themeProvider.currentTheme.colorScheme.background,
+                      iconName: const Icon(Icons.circle),
+                      text: 'hello',
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 180,
+                    width: 150,
+                    child: ProfileCard(
+                      color: themeProvider.currentTheme.colorScheme.secondary,
+                      textColor:
+                          themeProvider.currentTheme.colorScheme.background,
+                      iconName: const Icon(Icons.circle),
+                      text: 'hello',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
               height: 80,
-              width: 300,
+              width: 370,
               child: MyButton(
                   onTap: () {
-                    Navigator.of(context).pushAndRemoveUntil(
-                        homePageRoute as Route<Object?>, (route) => false);
+                    logoutMethod();
                   },
-                  textColor: Colors.black,
-                  backgroungColor: Colors.white60,
+                  textColor: themeProvider.currentTheme.colorScheme.background,
+                  backgroungColor:
+                      themeProvider.currentTheme.colorScheme.secondary,
                   text: 'LOGOUT'),
-            ),
+            )
           ],
         ),
       ),

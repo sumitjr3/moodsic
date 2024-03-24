@@ -2,6 +2,9 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:moodsic/controllers/songs.dart';
+import 'package:moodsic/tabbar_view/tabs/tunes_view.dart';
+import 'package:moodsic/theme/theme_provider.dart';
+import 'package:moodsic/views/HomePage.dart';
 
 class PlaylistProvider extends ChangeNotifier {
   //constructor

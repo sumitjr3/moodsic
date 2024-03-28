@@ -19,8 +19,7 @@ class _tunesViewState extends State<tunesView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final themeprovider = Provider.of<ThemeProvider>(context, listen: false);
-    playlistProvider = PlaylistProvider(themeprovider.currentThemeName);
+    playlistProvider = PlaylistProvider();
   }
 
   @override
@@ -31,13 +30,12 @@ class _tunesViewState extends State<tunesView> {
   void goToSong(int currentIndex) {
     //update the song index
     playlistProvider.currentSongIndex = currentIndex;
-    ThemeProvider themeProvider = ThemeProvider();
-    print("hello " + themeProvider.currentThemeName);
+
     //navigate to the detailed screen
     Navigator.push(
       context,
       PageRouteBuilder(
-        transitionDuration: const Duration(seconds: 2),
+        transitionDuration: const Duration(seconds: 1),
         pageBuilder: (context, animation, secondaryAnimation) =>
             const DetailedMusicPlayer(),
         // builder: (context) => const DetailedMusicPlayer(),
@@ -65,7 +63,7 @@ class _tunesViewState extends State<tunesView> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 15,
-                childAspectRatio: 1 / 1.25,
+                childAspectRatio: 1 / 1.35,
               ),
               itemCount: playlist.length,
               itemBuilder: (context, index) {
@@ -76,15 +74,12 @@ class _tunesViewState extends State<tunesView> {
                   onTap: () {
                     goToSong(index);
                   },
-                  child: Hero(
-                    tag: 'animation',
-                    child: myCard(
-                        color: themeProvider.currentTheme.colorScheme.primary,
-                        textColor:
-                            themeProvider.currentTheme.colorScheme.secondary,
-                        text: song.songName,
-                        imagePath: song.songImagePath),
-                  ),
+                  child: myCard(
+                      color: themeProvider.currentTheme.colorScheme.primary,
+                      textColor:
+                          themeProvider.currentTheme.colorScheme.secondary,
+                      text: song.songName,
+                      imagePath: song.songImagePath),
                 );
               },
               padding: const EdgeInsets.all(10),

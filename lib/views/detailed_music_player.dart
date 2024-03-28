@@ -74,15 +74,12 @@ class _DetailedMusicPlayerState extends State<DetailedMusicPlayer> {
                         //image
                         Padding(
                           padding: const EdgeInsets.all(20),
-                          child: Hero(
-                            tag: 'animation',
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image(
-                                image: NetworkImage(currentSong.songImagePath),
-                                alignment: Alignment.center,
-                                fit: BoxFit.fill,
-                              ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image(
+                              image: NetworkImage(currentSong.songImagePath),
+                              alignment: Alignment.center,
+                              fit: BoxFit.fill,
                             ),
                           ),
                         ),

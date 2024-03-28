@@ -1,12 +1,12 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:moodsic/controllers/my_storage.dart';
 import 'package:moodsic/controllers/songs.dart';
 
 class PlaylistProvider extends ChangeNotifier {
-  String themeName;
   //constructor
-  PlaylistProvider(this.themeName) {
+  PlaylistProvider() {
     listenToDuration();
     fetchPlaylist();
   }
@@ -52,8 +52,11 @@ class PlaylistProvider extends ChangeNotifier {
   ];
 
   Future<void> fetchPlaylist() async {
-    final DatabaseReference dbRef =
-        FirebaseDatabase.instance.ref().child('playlists').child(themeName);
+    String? storedString = await MyStorage.getString();
+    final DatabaseReference dbRef = FirebaseDatabase.instance
+        .ref()
+        .child('playlists')
+        .child('$storedString');
     final DataSnapshot snapshot = await dbRef.get();
 
     if (snapshot.value != null) {

@@ -7,3 +7,7 @@ const signupRoute = '/sign up/';
 const loginRoute = '/login/';
 const detailedMusicPlayerRoute = '/detailed/';
 const homePageRoute = '/home page/';
+const settingPageRoute = '/setting/';
+const aboutPageRoute = '/about/';
+const streakRoute = '/streak/';
+const timeCountRoute = '/time/';

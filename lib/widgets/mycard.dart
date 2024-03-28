@@ -38,7 +38,7 @@ class myCard extends StatelessWidget {
                 color: textColor,
                 fontSize: 15,
               ),
-            )
+            ),
           ],
         ),
       ),

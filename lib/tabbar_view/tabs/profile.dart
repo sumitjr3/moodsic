@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:moodsic/constants/routes.dart';
 import 'package:moodsic/theme/theme_provider.dart';
-import 'package:moodsic/widgets/mybutton.dart';
 import 'package:moodsic/widgets/profile_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class profileView extends StatefulWidget {
   profileView({super.key});
@@ -13,7 +12,16 @@ class profileView extends StatefulWidget {
 }
 
 class _profileViewState extends State<profileView> {
-  void logoutMethod() {}
+  Future<void> signOutUser(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(loginRoute, (route) => false);
+    } catch (e) {
+      print("error occured: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = ThemeProvider.of(context);
@@ -71,92 +79,102 @@ class _profileViewState extends State<profileView> {
             const SizedBox(
               height: 25,
             ),
-            ProfileCard(
-              color: themeProvider.currentTheme.colorScheme.primary,
-              textColor: themeProvider.currentTheme.colorScheme.secondary,
-              text: 'STREAK',
-              iconName: Icon(
-                Icons.whatshot,
-                color: themeProvider.currentTheme.colorScheme.secondary,
-              ),
-              onTap: (snack) {
-                Navigator.of(context).pushNamed(tunesRoutes);
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(streakRoute);
               },
-              radiusTop: 20,
-              radiusBottom: 3,
-              iconColor: themeProvider.currentTheme.colorScheme.secondary,
+              child: ProfileCard(
+                color: themeProvider.currentTheme.colorScheme.primary,
+                textColor: themeProvider.currentTheme.colorScheme.secondary,
+                text: 'STREAK',
+                iconName: Icon(
+                  Icons.whatshot,
+                  color: themeProvider.currentTheme.colorScheme.secondary,
+                ),
+                radiusTop: 20,
+                radiusBottom: 3,
+                iconColor: themeProvider.currentTheme.colorScheme.secondary,
+              ),
             ),
             const SizedBox(
               height: 0,
             ),
-            ProfileCard(
-              color: themeProvider.currentTheme.colorScheme.primary,
-              textColor: themeProvider.currentTheme.colorScheme.secondary,
-              text: 'TIME SPEND',
-              iconName: Icon(
-                Icons.timer_sharp,
-                color: themeProvider.currentTheme.colorScheme.secondary,
-              ),
-              onTap: (snack) {
-                Navigator.of(context).pushNamed(tunesRoutes);
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(timeCountRoute);
               },
-              radiusTop: 3,
-              radiusBottom: 3,
-              iconColor: themeProvider.currentTheme.colorScheme.secondary,
+              child: ProfileCard(
+                color: themeProvider.currentTheme.colorScheme.primary,
+                textColor: themeProvider.currentTheme.colorScheme.secondary,
+                text: 'TIME SPEND',
+                iconName: Icon(
+                  Icons.timer_sharp,
+                  color: themeProvider.currentTheme.colorScheme.secondary,
+                ),
+                radiusTop: 3,
+                radiusBottom: 3,
+                iconColor: themeProvider.currentTheme.colorScheme.secondary,
+              ),
             ),
             const SizedBox(
               height: 0,
             ),
-            ProfileCard(
-              color: themeProvider.currentTheme.colorScheme.primary,
-              textColor: themeProvider.currentTheme.colorScheme.secondary,
-              text: 'SETTING',
-              iconName: Icon(
-                Icons.settings,
-                color: themeProvider.currentTheme.colorScheme.secondary,
-              ),
-              onTap: (snack) {
-                Navigator.of(context).pushNamed(tunesRoutes);
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(settingPageRoute);
               },
-              radiusTop: 3,
-              radiusBottom: 3,
-              iconColor: themeProvider.currentTheme.colorScheme.secondary,
+              child: ProfileCard(
+                color: themeProvider.currentTheme.colorScheme.primary,
+                textColor: themeProvider.currentTheme.colorScheme.secondary,
+                text: 'SETTING',
+                iconName: Icon(
+                  Icons.settings,
+                  color: themeProvider.currentTheme.colorScheme.secondary,
+                ),
+                radiusTop: 3,
+                radiusBottom: 3,
+                iconColor: themeProvider.currentTheme.colorScheme.secondary,
+              ),
             ),
             const SizedBox(
               height: 0,
             ),
-            ProfileCard(
-              color: themeProvider.currentTheme.colorScheme.primary,
-              textColor: themeProvider.currentTheme.colorScheme.secondary,
-              text: 'ABOUT',
-              iconName: Icon(
-                Icons.info_outline,
-                color: themeProvider.currentTheme.colorScheme.secondary,
-              ),
-              onTap: (snack) {
-                Navigator.of(context).pushNamed(tunesRoutes);
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(aboutPageRoute);
               },
-              radiusTop: 3,
-              radiusBottom: 3,
-              iconColor: themeProvider.currentTheme.colorScheme.secondary,
+              child: ProfileCard(
+                color: themeProvider.currentTheme.colorScheme.primary,
+                textColor: themeProvider.currentTheme.colorScheme.secondary,
+                text: 'ABOUT',
+                iconName: Icon(
+                  Icons.info_outline,
+                  color: themeProvider.currentTheme.colorScheme.secondary,
+                ),
+                radiusTop: 3,
+                radiusBottom: 3,
+                iconColor: themeProvider.currentTheme.colorScheme.secondary,
+              ),
             ),
             const SizedBox(
               height: 0,
             ),
-            ProfileCard(
-              color: themeProvider.currentTheme.colorScheme.primary,
-              textColor: themeProvider.currentTheme.colorScheme.secondary,
-              text: 'LOGOUT',
-              iconName: Icon(
-                Icons.logout_rounded,
-                color: themeProvider.currentTheme.colorScheme.secondary,
-              ),
-              onTap: (snack) {
-                Navigator.of(context).pushNamed(tunesRoutes);
+            GestureDetector(
+              onTap: () {
+                signOutUser(context);
               },
-              radiusTop: 3,
-              radiusBottom: 20,
-              iconColor: themeProvider.currentTheme.colorScheme.secondary,
+              child: ProfileCard(
+                color: themeProvider.currentTheme.colorScheme.primary,
+                textColor: themeProvider.currentTheme.colorScheme.secondary,
+                text: 'LOGOUT',
+                iconName: Icon(
+                  Icons.logout_rounded,
+                  color: themeProvider.currentTheme.colorScheme.secondary,
+                ),
+                radiusTop: 3,
+                radiusBottom: 20,
+                iconColor: themeProvider.currentTheme.colorScheme.secondary,
+              ),
             ),
             const SizedBox(
               height: 0,

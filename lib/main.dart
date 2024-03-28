@@ -11,6 +11,10 @@ import 'package:moodsic/tabbar_view/tabs/profile.dart';
 import 'package:moodsic/tabbar_view/tabs/tunes_view.dart';
 import 'package:moodsic/theme/theme_provider.dart';
 import 'package:moodsic/views/HomePage.dart';
+import 'package:moodsic/views/about_view.dart';
+import 'package:moodsic/views/settings.dart';
+import 'package:moodsic/views/streak.dart';
+import 'package:moodsic/views/time_count.dart';
 import 'package:provider/provider.dart';
 import 'package:moodsic/theme/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,8 +22,6 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  final themeProvider = ThemeProvider();
-  final currentThemeName = themeProvider.currentThemeName;
 
   runApp(
     MultiProvider(
@@ -28,7 +30,7 @@ void main() async {
           create: (context) => ThemeProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => PlaylistProvider(currentThemeName),
+          create: (context) => PlaylistProvider(),
         ),
       ],
       child: MyApp(),
@@ -72,6 +74,10 @@ class MyApp extends StatelessWidget {
         homePageRoute: (context) => const HomePage(),
         loginRoute: (context) => LoginView(),
         signupRoute: (context) => SignupView(),
+        settingPageRoute: (context) => const SettingPage(),
+        aboutPageRoute: (context) => const AboutPage(),
+        streakRoute: (context) => const Streak(),
+        timeCountRoute: (context) => const TimeCount(),
       },
     );
   }

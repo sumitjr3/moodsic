@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moodsic/constants/routes.dart';
+import 'package:moodsic/controllers/my_storage.dart';
 import 'package:moodsic/tabbar_view/main_screen.dart';
 import 'package:moodsic/theme/theme_provider.dart';
 
@@ -84,12 +86,13 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               onPressed: () {
                 themeProvider.changeTheme(AppThemeType.values[selected - 1]);
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Theme(
-                    data: themeProvider.currentTheme,
-                    child: const MainScreen(),
-                  ),
-                ));
+                //theme name stored
+                MyStorage.saveString(themeProvider.currentThemeName);
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  mainScreenRoute,
+                  (route) => false,
+                  arguments: themeProvider.currentTheme,
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,

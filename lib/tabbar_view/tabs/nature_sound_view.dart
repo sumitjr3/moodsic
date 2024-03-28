@@ -68,15 +68,12 @@ class _natureSoundViewState extends State<natureSoundView> {
                   onTap: () {
                     goToSong(index);
                   },
-                  child: Hero(
-                    tag: 'animation',
-                    child: myCard(
-                        color: themeProvider.currentTheme.colorScheme.primary,
-                        textColor:
-                            themeProvider.currentTheme.colorScheme.secondary,
-                        text: song.songName,
-                        imagePath: song.songImagePath),
-                  ),
+                  child: myCard(
+                      color: themeProvider.currentTheme.colorScheme.primary,
+                      textColor:
+                          themeProvider.currentTheme.colorScheme.secondary,
+                      text: song.songName,
+                      imagePath: song.songImagePath),
                 );
               },
               padding: const EdgeInsets.all(10),

@@ -6,7 +6,6 @@ class ProfileCard extends StatelessWidget {
   final Color textColor;
   final String text;
   final Icon iconName;
-  final OnTap onTap;
   final double radiusTop;
   final double radiusBottom;
   final Color iconColor;
@@ -17,7 +16,6 @@ class ProfileCard extends StatelessWidget {
     required this.textColor,
     required this.text,
     required this.iconName,
-    required this.onTap,
     required this.radiusTop,
     required this.radiusBottom,
     required this.iconColor,
@@ -40,37 +38,27 @@ class ProfileCard extends StatelessWidget {
           ),
           color: color, // Set the background color of the button
         ),
-        child: TextButton(
-          onPressed: () {
-            onTap; // Handle button tap
-          },
-          style: TextButton.styleFrom(
-            padding: const EdgeInsets.all(16), // Adjust padding as needed
-            tapTargetSize: MaterialTapTargetSize
-                .shrinkWrap, // Ensure the button size is based on its content
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(
-                width: 10,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(
+              width: 10,
+            ),
+            iconName, // Replace 'start_icon' with the appropriate icon
+            const SizedBox(
+                width: 20), // Adjust spacing between icon and text as needed
+            Text(
+              text,
+              style: TextStyle(
+                color: textColor,
+                fontSize: 15,
               ),
-              iconName, // Replace 'start_icon' with the appropriate icon
-              const SizedBox(
-                  width: 20), // Adjust spacing between icon and text as needed
-              Text(
-                text,
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: 15,
-                ),
-              ),
-              const Spacer(), // Adjust spacing between text and end icon as needed
-              Icon(Icons.navigate_next,
-                  color:
-                      iconColor), // Replace 'end_icon' with the appropriate icon
-            ],
-          ),
+            ),
+            const Spacer(), // Adjust spacing between text and end icon as needed
+            Icon(Icons.navigate_next,
+                color:
+                    iconColor), // Replace 'end_icon' with the appropriate icon
+          ],
         ),
       ),
     );

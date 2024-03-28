@@ -18,6 +18,9 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  final themeProvider = ThemeProvider();
+  final currentThemeName = themeProvider.currentThemeName;
+
   runApp(
     MultiProvider(
       providers: [
@@ -25,7 +28,7 @@ void main() async {
           create: (context) => ThemeProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => PlaylistProvider(),
+          create: (context) => PlaylistProvider(currentThemeName),
         ),
       ],
       child: MyApp(),

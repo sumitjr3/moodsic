@@ -1,4 +1,3 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:moodsic/controllers/playlist_provider.dart';
 import 'package:moodsic/controllers/songs.dart';
@@ -20,7 +19,8 @@ class _tunesViewState extends State<tunesView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    playlistProvider = Provider.of<PlaylistProvider>(context, listen: false);
+    final themeprovider = Provider.of<ThemeProvider>(context, listen: false);
+    playlistProvider = PlaylistProvider(themeprovider.currentThemeName);
   }
 
   @override
@@ -31,7 +31,8 @@ class _tunesViewState extends State<tunesView> {
   void goToSong(int currentIndex) {
     //update the song index
     playlistProvider.currentSongIndex = currentIndex;
-
+    ThemeProvider themeProvider = ThemeProvider();
+    print("hello " + themeProvider.currentThemeName);
     //navigate to the detailed screen
     Navigator.push(
       context,
@@ -50,7 +51,7 @@ class _tunesViewState extends State<tunesView> {
     final themeProvider = ThemeProvider.of(context);
 
     return Scaffold(
-      backgroundColor: themeProvider.currentTheme.colorScheme.secondary,
+      backgroundColor: themeProvider.currentTheme.colorScheme.background,
       body: Consumer<PlaylistProvider>(
         builder: (context, value, child) {
           //get the playlist

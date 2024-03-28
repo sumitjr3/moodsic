@@ -15,19 +15,19 @@ class MainScreen extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: themeProvider.currentTheme.colorScheme.secondary,
+        backgroundColor: themeProvider.currentTheme.colorScheme.background,
         body: Column(
           children: [
             TabBar(
               indicatorSize: TabBarIndicatorSize.label,
-              labelColor: tabbarcolor,
+              labelColor: themeProvider.currentTheme.colorScheme.secondary,
               unselectedLabelColor: tabbarcolor,
-              tabs: const [
+              tabs: [
                 Tab(
                   iconMargin: EdgeInsets.only(bottom: 3),
                   icon: Icon(
                     Icons.music_note,
-                    color: Colors.black,
+                    color: themeProvider.currentTheme.colorScheme.secondary,
                     size: 30,
                   ),
                   height: 80,
@@ -35,7 +35,7 @@ class MainScreen extends StatelessWidget {
                 Tab(
                   icon: Icon(
                     Icons.change_circle,
-                    color: Colors.black,
+                    color: themeProvider.currentTheme.colorScheme.secondary,
                     size: 30,
                   ),
                   height: 80,
@@ -43,7 +43,7 @@ class MainScreen extends StatelessWidget {
                 Tab(
                   icon: Icon(
                     Icons.person,
-                    color: Colors.black,
+                    color: themeProvider.currentTheme.colorScheme.secondary,
                   ),
                 ),
               ],

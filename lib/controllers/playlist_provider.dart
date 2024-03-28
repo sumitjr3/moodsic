@@ -2,13 +2,11 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:moodsic/controllers/songs.dart';
-import 'package:moodsic/tabbar_view/tabs/tunes_view.dart';
-import 'package:moodsic/theme/theme_provider.dart';
-import 'package:moodsic/views/HomePage.dart';
 
 class PlaylistProvider extends ChangeNotifier {
+  String themeName;
   //constructor
-  PlaylistProvider() {
+  PlaylistProvider(this.themeName) {
     listenToDuration();
     fetchPlaylist();
   }
@@ -55,23 +53,27 @@ class PlaylistProvider extends ChangeNotifier {
 
   Future<void> fetchPlaylist() async {
     final DatabaseReference dbRef =
-        FirebaseDatabase.instance.ref().child('playlists').child('study');
+        FirebaseDatabase.instance.ref().child('playlists').child(themeName);
     final DataSnapshot snapshot = await dbRef.get();
 
-    List<dynamic> playlistData = snapshot.value as List<dynamic>;
+    if (snapshot.value != null) {
+      List<dynamic> playlistData = snapshot.value as List<dynamic>;
 
-    _playlist.clear(); // Clear the previous playlist data
+      _playlist.clear(); // Clear the previous playlist data
 
-    for (var songData in playlistData) {
-      final Songs song = Songs(
-        songName: songData['title'],
-        songImagePath: songData['cover_image'],
-        songTrackPath: songData['mp3_url'],
-      );
-      _playlist.add(song);
+      for (var songData in playlistData) {
+        final Songs song = Songs(
+          songName: songData['title'],
+          songImagePath: songData['cover_image'],
+          songTrackPath: songData['mp3_url'],
+        );
+        _playlist.add(song);
+      }
+
+      notifyListeners(); // Trigger a rebuild of the widget to display the updated playlist
+    } else {
+      print('Error: playlist data is null');
     }
-
-    notifyListeners(); // Trigger a rebuild of the widget to display the updated playlist
   }
 
   /* Audio Player */

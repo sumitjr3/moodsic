@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moodsic/tabbar_view/tabs/nature_sound_view.dart';
-import 'package:moodsic/tabbar_view/tabs/profile.dart';
-import 'package:moodsic/tabbar_view/tabs/tunes_view.dart';
 import 'package:moodsic/theme/theme_provider.dart';
+
+import 'package:moodsic/views/tabbar_view/tabs/profile.dart';
+import 'package:moodsic/views/tabbar_view/tabs/tunes_view.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -13,7 +13,7 @@ class MainScreen extends StatelessWidget {
     Color tabbarcolor = themeProvider.currentTheme.colorScheme.background;
 
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         backgroundColor: themeProvider.currentTheme.colorScheme.background,
         body: Column(
@@ -24,17 +24,9 @@ class MainScreen extends StatelessWidget {
               unselectedLabelColor: tabbarcolor,
               tabs: [
                 Tab(
-                  iconMargin: EdgeInsets.only(bottom: 3),
+                  iconMargin: const EdgeInsets.only(bottom: 3),
                   icon: Icon(
                     Icons.music_note,
-                    color: themeProvider.currentTheme.colorScheme.secondary,
-                    size: 30,
-                  ),
-                  height: 80,
-                ),
-                Tab(
-                  icon: Icon(
-                    Icons.change_circle,
                     color: themeProvider.currentTheme.colorScheme.secondary,
                     size: 30,
                   ),
@@ -52,7 +44,6 @@ class MainScreen extends StatelessWidget {
               child: TabBarView(
                 children: [
                   tunesView(),
-                  natureSoundView(),
                   profileView(),
                 ],
               ),

@@ -78,7 +78,7 @@ class _SignupViewState extends State<SignupView> {
             //name textfield
             MyTextField(
               controller: fullNameController,
-              hintText: 'Full Name',
+              hintText: 'Name',
               input_icon: const Icon(Icons.person),
               obsecure: false,
             ),

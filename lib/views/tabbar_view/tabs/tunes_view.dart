@@ -63,7 +63,7 @@ class _tunesViewState extends State<tunesView> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 15,
-                childAspectRatio: 1 / 1.35,
+                childAspectRatio: 1 / 1.20,
               ),
               itemCount: playlist.length,
               itemBuilder: (context, index) {

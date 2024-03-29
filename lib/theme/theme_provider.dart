@@ -9,6 +9,7 @@ enum AppThemeType {
   read,
   chill,
   focus,
+  nature,
 }
 
 // Create a class to manage the theme
@@ -40,6 +41,8 @@ class ThemeProvider with ChangeNotifier {
         return AppTheme().chillTheme;
       case AppThemeType.focus:
         return AppTheme().focusTheme;
+      case AppThemeType.nature:
+        return AppTheme().focusTheme;
       default:
         return AppTheme().studyTheme;
     }
@@ -57,6 +60,8 @@ class ThemeProvider with ChangeNotifier {
         return 'chill';
       case AppThemeType.focus:
         return 'focus';
+      case AppThemeType.nature:
+        return 'nature';
       default:
         return 'study';
     }

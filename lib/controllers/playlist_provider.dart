@@ -62,7 +62,7 @@ class PlaylistProvider extends ChangeNotifier {
     if (snapshot.value != null) {
       List<dynamic> playlistData = snapshot.value as List<dynamic>;
 
-      _playlist.clear(); // Clear the previous playlist data
+      _playlist.clear();
 
       for (var songData in playlistData) {
         final Songs song = Songs(
@@ -73,7 +73,7 @@ class PlaylistProvider extends ChangeNotifier {
         _playlist.add(song);
       }
 
-      notifyListeners(); // Trigger a rebuild of the widget to display the updated playlist
+      notifyListeners();
     } else {
       print('Error: playlist data is null');
     }

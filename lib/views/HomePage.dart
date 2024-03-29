@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moodsic/constants/routes.dart';
 import 'package:moodsic/controllers/my_storage.dart';
-import 'package:moodsic/tabbar_view/main_screen.dart';
 import 'package:moodsic/theme/theme_provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,16 +28,16 @@ class _HomePageState extends State<HomePage> {
         side: BorderSide(
           color: (selected == index) ? Colors.black87 : Colors.black26,
         ),
-        fixedSize: const Size(300, 100),
+        fixedSize: const Size(300, 80),
       ),
       child: Text(
         text,
         style: TextStyle(
           color: (selected == index) ? Colors.black87 : Colors.black26,
-          fontSize: 30,
+          fontSize: 25,
           fontWeight: FontWeight.w400,
-          letterSpacing: 3,
-          wordSpacing: 5,
+          letterSpacing: 2,
+          wordSpacing: 3,
         ),
       ),
     );
@@ -83,6 +82,10 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 20,
             ),
+            customRadio('nature', 6),
+            const SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               onPressed: () {
                 themeProvider.changeTheme(AppThemeType.values[selected - 1]);
@@ -96,7 +99,7 @@ class _HomePageState extends State<HomePage> {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
-                fixedSize: const Size(200, 100),
+                fixedSize: const Size(200, 80),
                 elevation: 10,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -105,7 +108,7 @@ class _HomePageState extends State<HomePage> {
               child: const Text(
                 'Switch',
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 25,
                 ),
               ),
             ),

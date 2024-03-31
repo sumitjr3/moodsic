@@ -11,3 +11,4 @@ const settingPageRoute = '/setting/';
 const aboutPageRoute = '/about/';
 const streakRoute = '/streak/';
 const timeCountRoute = '/time/';
+const AvatarRoute = '/avtar/';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:moodsic/auth/avatar.dart';
 import 'package:moodsic/auth/firebase_auth_service.dart';
 import 'package:moodsic/auth/login.dart';
 import 'package:moodsic/auth/signin.dart';
@@ -78,6 +79,7 @@ class MyApp extends StatelessWidget {
         aboutPageRoute: (context) => const AboutPage(),
         streakRoute: (context) => const Streak(),
         timeCountRoute: (context) => const TimeCount(),
+        AvatarRoute: (context) => const AvatarView(),
       },
     );
   }

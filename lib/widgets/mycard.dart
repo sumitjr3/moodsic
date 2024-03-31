@@ -21,7 +21,7 @@ class myCard extends StatelessWidget {
         color: color,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             ClipRRect(

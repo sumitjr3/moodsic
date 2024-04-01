@@ -6,6 +6,7 @@ import 'package:moodsic/auth/login.dart';
 import 'package:moodsic/auth/signin.dart';
 import 'package:moodsic/constants/routes.dart';
 import 'package:moodsic/controllers/playlist_provider.dart';
+import 'package:moodsic/views/initial_pages/page_view.dart';
 import 'package:moodsic/views/tabbar_view/main_screen.dart';
 import 'package:moodsic/theme/theme_provider.dart';
 import 'package:moodsic/views/HomePage.dart';
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
           if (snapshot.data == true) {
             return _buildApp(context, const HomePage());
           } else {
-            return _buildApp(context, LoginView());
+            return _buildApp(context, InitialPageView());
           }
         }
       },

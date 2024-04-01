@@ -13,7 +13,7 @@ dependencies:
   provider: ^6.1.1
   audioplayers: ^5.2.1
   get: ^4.6.6
-  just_audio: ^0.9.36
+  smooth_page_indicator: ^1.1.0
   on_audio_query: ^2.9.0
   permission_handler: ^11.0.1
   firebase_core: ^2.24.2

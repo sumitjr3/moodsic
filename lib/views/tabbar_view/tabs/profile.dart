@@ -49,7 +49,7 @@ class _profileViewState extends State<profileView> {
     try {
       await FirebaseAuth.instance.signOut();
       Navigator.of(context)
-          .pushNamedAndRemoveUntil(loginRoute, (route) => false);
+          .pushNamedAndRemoveUntil(AvatarRoute, (route) => false);
     } catch (e) {
       print("error occured: $e");
     }

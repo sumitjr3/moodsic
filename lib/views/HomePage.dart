@@ -48,12 +48,13 @@ class _HomePageState extends State<HomePage> {
     //current themeProvider instance
     final themeProvider = ThemeProvider.of(context, listen: false);
     return Scaffold(
-      backgroundColor: Colors.white70,
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const SizedBox(
-              height: 20,
+              height: 30,
             ),
             const Text(
               'Select your mood!',
@@ -109,8 +110,12 @@ class _HomePageState extends State<HomePage> {
                 'Switch',
                 style: TextStyle(
                   fontSize: 25,
+                  color: Colors.white,
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 10,
             ),
           ],
         ),

@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:moodsic/constants/routes.dart';
+import 'package:moodsic/main.dart';
 import 'package:moodsic/theme/theme_provider.dart';
 import 'package:moodsic/widgets/profile_card.dart';
 
@@ -21,6 +23,7 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = ThemeProvider.of(context);
     return Scaffold(
+      backgroundColor: themeProvider.currentTheme.colorScheme.primary,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -38,6 +41,7 @@ class SettingPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        backgroundColor: themeProvider.currentTheme.colorScheme.background,
       ),
       body: Center(
         child: Column(
@@ -47,10 +51,11 @@ class SettingPage extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pop();
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil(AvatarRoute, (route) => false);
               },
               child: ProfileCard(
-                color: themeProvider.currentTheme.colorScheme.primary,
+                color: themeProvider.currentTheme.colorScheme.background,
                 textColor: themeProvider.currentTheme.colorScheme.secondary,
                 text: "Change Avatar",
                 iconName: const Icon(Icons.person),
@@ -64,11 +69,15 @@ class SettingPage extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context)
-                    .pushNamedAndRemoveUntil(homePageRoute, (route) => false);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
+                );
+
+                SystemNavigator.pop();
               },
               child: ProfileCard(
-                color: themeProvider.currentTheme.colorScheme.primary,
+                color: themeProvider.currentTheme.colorScheme.background,
                 textColor: themeProvider.currentTheme.colorScheme.secondary,
                 text: "Change Theme",
                 iconName: const Icon(Icons.change_circle_outlined),
@@ -85,7 +94,7 @@ class SettingPage extends StatelessWidget {
                 Navigator.of(context).pushNamed(aboutPageRoute);
               },
               child: ProfileCard(
-                color: themeProvider.currentTheme.colorScheme.primary,
+                color: themeProvider.currentTheme.colorScheme.background,
                 textColor: themeProvider.currentTheme.colorScheme.secondary,
                 text: "About",
                 iconName: const Icon(Icons.info_outline),
@@ -102,7 +111,7 @@ class SettingPage extends StatelessWidget {
                 signOutUser(context);
               },
               child: ProfileCard(
-                color: themeProvider.currentTheme.colorScheme.primary,
+                color: themeProvider.currentTheme.colorScheme.background,
                 textColor: themeProvider.currentTheme.colorScheme.secondary,
                 text: "LOGOUT",
                 iconName: const Icon(Icons.logout_rounded),

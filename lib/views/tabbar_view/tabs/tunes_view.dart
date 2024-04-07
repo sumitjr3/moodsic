@@ -27,22 +27,6 @@ class _tunesViewState extends State<tunesView> {
     super.initState();
   }
 
-  void goToSong(int currentIndex) {
-    //update the song index
-    playlistProvider.currentSongIndex = currentIndex;
-
-    //navigate to the detailed screen
-    Navigator.push(
-      context,
-      PageRouteBuilder(
-        transitionDuration: const Duration(seconds: 1),
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const DetailedMusicPlayer(),
-        // builder: (context) => const DetailedMusicPlayer(),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     // Access the selected theme from the provider
@@ -51,9 +35,9 @@ class _tunesViewState extends State<tunesView> {
     return Scaffold(
       backgroundColor: themeProvider.currentTheme.colorScheme.background,
       body: Consumer<PlaylistProvider>(
-        builder: (context, value, child) {
+        builder: (context, playlistProvider, child) {
           //get the playlist
-          final List<Songs> playlist = value.playList;
+          final List<Songs> playlist = playlistProvider.playList;
 
           //return liour cardview
           return Padding(
@@ -69,18 +53,33 @@ class _tunesViewState extends State<tunesView> {
               itemBuilder: (context, index) {
                 //get the individual song
                 final Songs song = playlist[index];
-
-                return InkWell(
-                  onTap: () {
-                    goToSong(index);
-                  },
-                  child: myCard(
+                if (playlistProvider.isLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(color: Colors.green),
+                  );
+                } else {
+                  return InkWell(
+                    onTap: () {
+                      playlistProvider.currentSongIndex = index;
+                      //navigate to the detailed screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailedMusicPlayer(
+                            currentIndex: index,
+                          ),
+                        ),
+                      );
+                    },
+                    child: myCard(
                       color: themeProvider.currentTheme.colorScheme.primary,
                       textColor:
                           themeProvider.currentTheme.colorScheme.secondary,
                       text: song.songName,
-                      imagePath: song.songImagePath),
-                );
+                      imagePath: song.songImagePath,
+                    ),
+                  );
+                }
               },
               padding: const EdgeInsets.all(10),
             ),

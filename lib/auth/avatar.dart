@@ -94,7 +94,13 @@ class _AvatarViewState extends State<AvatarView> {
               MyButton(
                 onTap: () {
                   MyStorage.saveInt(selected);
-                  Navigator.of(context).pushNamed(signupRoute);
+
+                  if (isUserLoggedIn()) {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        homePageRoute, (route) => false);
+                  } else {
+                    Navigator.of(context).pushNamed(signupRoute);
+                  }
                 },
                 text: 'NEXT',
               ),

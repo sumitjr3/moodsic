@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:moodsic/controllers/playlist_provider.dart';
+import 'package:moodsic/controllers/songs.dart';
 import 'package:moodsic/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class DetailedMusicPlayer extends StatefulWidget {
+  final int currentIndex;
+
   const DetailedMusicPlayer({
-    super.key,
-  });
+    Key? key,
+    required this.currentIndex,
+  }) : super(key: key);
 
   @override
   State<DetailedMusicPlayer> createState() => _DetailedMusicPlayerState();
@@ -17,12 +21,14 @@ class _DetailedMusicPlayerState extends State<DetailedMusicPlayer> {
   Widget build(BuildContext context) {
     return Consumer<PlaylistProvider>(
       builder: (context, value, child) {
-        //get curent playlist
-        final playlist = value.playList;
-
-        //current song index
-        final currentSong = playlist[value.currentSongIndex ?? 0];
+        final _playlist = value.playList;
+        final currentSong = _playlist[value.currentSongIndex ?? 0];
+        int index = widget.currentIndex;
+        final PlaylistProvider playlistProvider =
+            Provider.of<PlaylistProvider>(context);
         final themeprovider = ThemeProvider.of(context);
+        final List<Songs> playlist = playlistProvider.playList;
+
         return Scaffold(
           backgroundColor: themeprovider.currentTheme.colorScheme.primary,
           body: SafeArea(
@@ -77,7 +83,9 @@ class _DetailedMusicPlayerState extends State<DetailedMusicPlayer> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: Image(
-                              image: NetworkImage(currentSong.songImagePath),
+                              image: NetworkImage(
+                                currentSong.songImagePath,
+                              ),
                               alignment: Alignment.center,
                               fit: BoxFit.fill,
                             ),
@@ -109,11 +117,14 @@ class _DetailedMusicPlayerState extends State<DetailedMusicPlayer> {
                       ),
                       child: Slider(
                         min: 0,
-                        max: value.totalDuration.inSeconds.toDouble(),
-                        value: value.currentDuration.inSeconds.toDouble(),
+                        max:
+                            playlistProvider.totalDuration.inSeconds.toDouble(),
+                        value: playlistProvider.currentDuration.inSeconds
+                            .toDouble(),
                         activeColor: Colors.green,
                         onChanged: (double double) {
-                          value.seek(Duration(seconds: double.toInt()));
+                          playlistProvider
+                              .seek(Duration(seconds: double.toInt()));
                         },
                       ),
                     ),
@@ -141,9 +152,17 @@ class _DetailedMusicPlayerState extends State<DetailedMusicPlayer> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Expanded(
-                                child: GestureDetector(
-                                  onTap: value.playPreviousSong,
-                                  child: const Icon(
+                                child: IconButton(
+                                  onPressed: () {
+                                    if (index == 0) {
+                                      index = 7;
+                                    } else {
+                                      index--;
+                                    }
+                                    playlistProvider.playPreviousSong();
+                                    setState(() {});
+                                  },
+                                  icon: const Icon(
                                     Icons.skip_previous,
                                     size: 30,
                                   ),
@@ -152,10 +171,17 @@ class _DetailedMusicPlayerState extends State<DetailedMusicPlayer> {
                               const SizedBox(width: 20),
                               Expanded(
                                 flex: 2,
-                                child: GestureDetector(
-                                  onTap: value.pauseOrResume,
-                                  child: Icon(
-                                    value.isPlaying
+                                child: IconButton(
+                                  onPressed: () {
+                                    if (playlistProvider.isPlaying) {
+                                      playlistProvider.pause();
+                                    } else {
+                                      playlistProvider.resume();
+                                    }
+                                    setState(() {});
+                                  },
+                                  icon: Icon(
+                                    playlistProvider.isPlaying
                                         ? Icons.pause
                                         : Icons.play_arrow,
                                     size: 30,
@@ -164,9 +190,17 @@ class _DetailedMusicPlayerState extends State<DetailedMusicPlayer> {
                               ),
                               const SizedBox(width: 20),
                               Expanded(
-                                child: GestureDetector(
-                                  onTap: value.playNextSong,
-                                  child: const Icon(
+                                child: IconButton(
+                                  onPressed: () {
+                                    if (index == 7) {
+                                      index = 0;
+                                    } else {
+                                      index++;
+                                    }
+                                    playlistProvider.playNextSong();
+                                    setState(() {});
+                                  },
+                                  icon: const Icon(
                                     Icons.skip_next,
                                     size: 30,
                                   ),

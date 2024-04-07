@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,9 +9,10 @@ class MyStorage {
   static const String usernameKey = 'user';
   static const String emailKey = 'email@gmail.com';
 
-  //the
+  //theme
   static Future<void> saveString(String value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
     await prefs.setString(myStringKey, value);
   }
 
@@ -51,4 +53,9 @@ class MyStorage {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(emailKey);
   }
+}
+
+//checking whether user is logged in or not
+bool isUserLoggedIn() {
+  return FirebaseAuth.instance.currentUser != null;
 }

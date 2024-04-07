@@ -13,7 +13,7 @@ import 'package:moodsic/views/HomePage.dart';
 import 'package:moodsic/views/about_view.dart';
 import 'package:moodsic/views/settings.dart';
 import 'package:moodsic/views/streak.dart';
-import 'package:moodsic/views/tabbar_view/tabs/nature_sound_view.dart';
+
 import 'package:moodsic/views/tabbar_view/tabs/profile.dart';
 import 'package:moodsic/views/tabbar_view/tabs/tunes_view.dart';
 import 'package:moodsic/views/time_count.dart';
@@ -71,7 +71,6 @@ class MyApp extends StatelessWidget {
         mainRoute: (context) => const HomePage(),
         tunesRoutes: (context) => tunesView(),
         mainScreenRoute: (context) => const MainScreen(),
-        natureRoute: (context) => natureSoundView(),
         profileRoute: (context) => profileView(),
         homePageRoute: (context) => const HomePage(),
         loginRoute: (context) => LoginView(),

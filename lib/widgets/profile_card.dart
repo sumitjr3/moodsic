@@ -55,9 +55,10 @@ class ProfileCard extends StatelessWidget {
               ),
             ),
             const Spacer(), // Adjust spacing between text and end icon as needed
-            Icon(Icons.navigate_next,
-                color:
-                    iconColor), // Replace 'end_icon' with the appropriate icon
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: Icon(Icons.navigate_next, color: iconColor),
+            ), // Replace 'end_icon' with the appropriate icon
           ],
         ),
       ),

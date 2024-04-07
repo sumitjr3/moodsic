@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+//import 'package:google_sign_in/google_sign_in.dart';
 import 'package:moodsic/auth/firebase_auth_service.dart';
 import 'package:moodsic/auth/my_button.dart';
 import 'package:moodsic/constants/routes.dart';
@@ -32,16 +33,57 @@ class _SignupViewState extends State<SignupView> {
     if (user != null) {
       MyStorage.saveStringMail(email);
       MyStorage.saveStringUserName(username);
-      print('user is successfully created');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'user created successfully',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
       Navigator.pushNamed(context, homePageRoute);
     } else {
-      print("some error occured");
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'some error occured',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
     }
   }
+
+  // Future<User?> _handleSignIn() async {
+  //   final FirebaseAuth _auth = FirebaseAuth.instance;
+  //   final GoogleSignIn googleSignIn = GoogleSignIn();
+  //   try {
+  //     final GoogleSignInAccount? googleSignInAccount =
+  //         await googleSignIn.signIn();
+  //     if (googleSignInAccount != null) {
+  //       final GoogleSignInAuthentication googleSignInAuthentication =
+  //           await googleSignInAccount.authentication;
+  //       final AuthCredential credential = GoogleAuthProvider.credential(
+  //         accessToken: googleSignInAuthentication.accessToken,
+  //         idToken: googleSignInAuthentication.idToken,
+  //       );
+  //       final UserCredential authResult =
+  //           await _auth.signInWithCredential(credential);
+  //       final User? user = authResult.user;
+  //       // You can now use 'user' to get user information or perform other actions.
+  //       return user;
+  //     }
+  //   } catch (error) {
+  //     print(error);
+  //     // Handle errors here
+  //   }
+  //   return null;
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       body: SafeArea(
           child: SingleChildScrollView(
         child: Center(
@@ -50,7 +92,7 @@ class _SignupViewState extends State<SignupView> {
             children: [
               //free space
               const SizedBox(
-                height: 50.0,
+                height: 80.0,
               ),
 
               //icon
@@ -62,7 +104,7 @@ class _SignupViewState extends State<SignupView> {
 
               //free space
               const SizedBox(
-                height: 50.0,
+                height: 40.0,
               ),
 
               //signup text
@@ -129,32 +171,32 @@ class _SignupViewState extends State<SignupView> {
                 height: 40.0,
               ),
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        thickness: 0.5,
-                        color: Colors.grey[400],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Text(
-                        'Or continue with',
-                        style: TextStyle(color: Colors.grey[700]),
-                      ),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        thickness: 0.5,
-                        color: Colors.grey[400],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              //   child: Row(
+              //     children: [
+              //       Expanded(
+              //         child: Divider(
+              //           thickness: 0.5,
+              //           color: Colors.grey[400],
+              //         ),
+              //       ),
+              //       Padding(
+              //         padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              //         child: Text(
+              //           'Or continue with',
+              //           style: TextStyle(color: Colors.grey[700]),
+              //         ),
+              //       ),
+              //       Expanded(
+              //         child: Divider(
+              //           thickness: 0.5,
+              //           color: Colors.grey[400],
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               const SizedBox(
                 height: 100,
               ),
@@ -173,7 +215,7 @@ class _SignupViewState extends State<SignupView> {
                       const SizedBox(width: 4),
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).pushNamed(AvatarRoute);
+                          Navigator.of(context).pushNamed(loginRoute);
                         },
                         child: const Text(
                           'login now.',

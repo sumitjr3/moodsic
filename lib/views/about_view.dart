@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:moodsic/theme/theme_provider.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = ThemeProvider.of(context);
     return Scaffold(
+      backgroundColor: themeProvider.currentTheme.colorScheme.primary,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -23,6 +26,7 @@ class AboutPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        backgroundColor: themeProvider.currentTheme.colorScheme.background,
       ),
       body: const Center(
         child: Text(

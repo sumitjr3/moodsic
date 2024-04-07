@@ -12,44 +12,11 @@ class PlaylistProvider extends ChangeNotifier {
   }
 
   //list of songs
-  final List<Songs> _playlist = [
-    // Songs(
-    //     songName: 'tune 1',
-    //     songTrackPath:
-    //         'https://firebasestorage.googleapis.com/v0/b/moodsic-97119.appspot.com/o/tunes%2FchillTunes%2F1%2Fmp3%2Fdreamscape-soul-relaxing-cinematic-background-music-for-videos-155186.mp3?alt=media&token=9c894e1f-b020-494a-b548-5794fdc391db',
-    //     songImagePath: 'lib/assets/images/img1.png'),
-    // Songs(
-    //     songName: 'tune 2',
-    //     songTrackPath:
-    //         'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    //     songImagePath: 'lib/assets/images/img2.png'),
-    // Songs(
-    //     songName: 'tune 3',
-    //     songTrackPath:
-    //         'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    //     songImagePath: 'lib/assets/images/img3.png'),
-    // Songs(
-    //     songName: 'tune 4',
-    //     songTrackPath:
-    //         'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    //     songImagePath: 'lib/assets/images/img4.png'),
-    // Songs(
-    //     songName: 'tune 5',
-    //     songTrackPath: 'lib/assets/tunes/tune1.mp3',
-    //     songImagePath: 'lib/assets/images/img5.png'),
-    // Songs(
-    //     songName: 'tune 6',
-    //     songTrackPath: 'lib/assets/tunes/tune1.mp3',
-    //     songImagePath: 'lib/assets/images/img6.png'),
-    // Songs(
-    //     songName: 'tune 7',
-    //     songTrackPath: 'lib/assets/tunes/tune1.mp3',
-    //     songImagePath: 'lib/assets/images/img7.png'),
-    // Songs(
-    //     songName: 'tune 8',
-    //     songTrackPath: 'lib/assets/tunes/tune1.mp3',
-    //     songImagePath: 'lib/assets/images/img8.png'),
-  ];
+  final List<Songs> _playlist = [];
+  // Added isLoading flag
+  bool _isLoading = true;
+  // Add getter for isLoading
+  bool get isLoading => _isLoading;
 
   Future<void> fetchPlaylist() async {
     String? storedString = await MyStorage.getString();
@@ -72,7 +39,7 @@ class PlaylistProvider extends ChangeNotifier {
         );
         _playlist.add(song);
       }
-
+      _isLoading = false;
       notifyListeners();
     } else {
       print('Error: playlist data is null');
@@ -146,17 +113,18 @@ class PlaylistProvider extends ChangeNotifier {
 
   //play previous song
   void playPreviousSong() async {
-    // if more than 2 seconds have passed, restart the current song
-    if (_currentDuration.inSeconds > 2) {
-      seek(Duration.zero);
-    }
-    //if its within first 2 seconds of the song, go to previous song
-    else {
-      if (_currentSongIndex! > 0) {
-        currentSongIndex = _currentSongIndex! - 1;
-      } else {
-        //if it is first song then hoop back to the last song
-        currentSongIndex = _playlist.length - 1;
+    if (_currentSongIndex != null && _playlist.isNotEmpty) {
+      // if more than 2 seconds have passed, restart the current song
+      if (_currentDuration.inSeconds > 2) {
+        seek(Duration.zero);
+      }
+      //if its within first 2 seconds of the song, go to previous song
+      else {
+        int newIndex = _currentSongIndex! - 1;
+        if (newIndex < 0) {
+          newIndex = _playlist.length - 1;
+        }
+        currentSongIndex = newIndex;
       }
     }
   }

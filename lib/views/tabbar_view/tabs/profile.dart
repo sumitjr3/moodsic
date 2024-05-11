@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:moodsic/constants/routes.dart';
 import 'package:moodsic/controllers/my_storage.dart';
 import 'package:moodsic/theme/theme_provider.dart';
@@ -48,6 +49,7 @@ class _profileViewState extends State<profileView> {
   Future<void> signOutUser(BuildContext context) async {
     try {
       await FirebaseAuth.instance.signOut();
+      await GoogleSignIn().signOut();
       Navigator.of(context)
           .pushNamedAndRemoveUntil(AvatarRoute, (route) => false);
     } catch (e) {

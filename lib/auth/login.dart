@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:moodsic/auth/firebase_auth_service.dart';
 //import 'package:google_sign_in/google_sign_in.dart';
 import 'package:moodsic/auth/my_button.dart';
@@ -19,37 +20,49 @@ class _LoginViewState extends State<LoginView> {
 
   final passwordController = TextEditingController();
 
-// Future<User?> _handleSignIn() async {
-//     final FirebaseAuth _auth = FirebaseAuth.instance;
-//     final GoogleSignIn googleSignIn = GoogleSignIn();
-//     try {
-//       final GoogleSignInAccount? googleSignInAccount =
-//           await googleSignIn.signIn();
-//       if (googleSignInAccount != null) {
-//         final GoogleSignInAuthentication googleSignInAuthentication =
-//             await googleSignInAccount.authentication;
-//         final AuthCredential credential = GoogleAuthProvider.credential(
-//           accessToken: googleSignInAuthentication.accessToken,
-//           idToken: googleSignInAuthentication.idToken,
-//         );
-//         final UserCredential authResult =
-//             await _auth.signInWithCredential(credential);
-//         final User? user = authResult.user;
-//         if (user != null) {
-//           print('user is successfully created');
-//           Navigator.pushNamed(context, homePageRoute);
-//         } else {
-//           print("some error occured");
-//         }
-//         // You can now use 'user' to get user information or perform other actions.
-//         return user;
-//       }
-//     } catch (error) {
-//       print(error);
-//       // Handle errors here
-//     }
-//     return null;
-//   }
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  Future<void> authenticateWithGoogle({required BuildContext context}) async {
+    try {
+      await signInWithGoogle();
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text("ERROR!"),
+          content: const Text("some error occured"),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+              },
+              child: Container(
+                color: Colors.green,
+                padding: const EdgeInsets.all(14),
+                child: const Text("okay"),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 
   Future<void> signUserIn() async {
     final FirebaseAuthService _auth = FirebaseAuthService();
@@ -157,53 +170,53 @@ class _LoginViewState extends State<LoginView> {
                 const SizedBox(height: 50),
 
                 // or continue with
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                //   child: Row(
-                //     children: [
-                //       Expanded(
-                //         child: Divider(
-                //           thickness: 0.5,
-                //           color: Colors.grey[400],
-                //         ),
-                //       ),
-                //       Padding(
-                //         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                //         child: Text(
-                //           'Or continue with',
-                //           style: TextStyle(color: Colors.grey[700]),
-                //         ),
-                //       ),
-                //       Expanded(
-                //         child: Divider(
-                //           thickness: 0.5,
-                //           color: Colors.grey[400],
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Colors.grey[400],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          'Or continue with',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Colors.grey[400],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
 
                 const SizedBox(height: 50),
 
-                // google + apple sign in buttons
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     // google button
-                //     GestureDetector(
-                //       onTap: () {
-                //         _handleSignIn();
-                //       },
-                //       child: ClipRect(
-                //         child: Image.asset(
-                //           'lib/assets/images/google.png',
-                //           fit: BoxFit.fill,
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
+                // google sign in buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // google button
+                    GestureDetector(
+                      onTap: () {
+                        authenticateWithGoogle(context: context);
+                      },
+                      child: ClipRect(
+                        child: Image.asset(
+                          'lib/assets/images/google.png',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
 
                 const SizedBox(height: 50),
 

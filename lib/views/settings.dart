@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:moodsic/constants/routes.dart';
 import 'package:moodsic/main.dart';
 import 'package:moodsic/theme/theme_provider.dart';
@@ -12,6 +13,7 @@ class SettingPage extends StatelessWidget {
   Future<void> signOutUser(BuildContext context) async {
     try {
       await FirebaseAuth.instance.signOut();
+      await GoogleSignIn().signOut();
       Navigator.of(context)
           .pushNamedAndRemoveUntil(AvatarRoute, (route) => false);
     } catch (e) {
@@ -73,8 +75,6 @@ class SettingPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(builder: (context) => MyApp()),
                 );
-
-                SystemNavigator.pop();
               },
               child: ProfileCard(
                 color: themeProvider.currentTheme.colorScheme.background,
